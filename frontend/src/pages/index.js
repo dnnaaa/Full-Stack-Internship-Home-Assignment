@@ -1,13 +1,18 @@
-import { Inter } from 'next/font/google'
+// src/pages/index.js
 
-const inter = Inter({ subsets: ['latin'] })
+import CsvUploader from '../components/CsvUploader';
 
-export default function Home() {
+const Home = () => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+      <div className="items-center justify-center bg-gray-100">
+          <div className="bg-white p-8 rounded-md shadow-md ">
+              <h1 className="text-3xl font-bold mb-6 text-center" style={{color: '#3498db'}}>
+                  CSV Uploader and Processor
+              </h1>
+              <CsvUploader/>
+          </div>
+      </div>
+  );
+};
+
+export default Home;
