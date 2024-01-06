@@ -1,13 +1,44 @@
-import { Inter } from 'next/font/google'
+import {useState} from 'react';
+import UploadForm from '../components/UploadForm';
+import EmployeeTable from '../components/EmployeeTable';
+import JobSummaryTable from '../components/JobSummaryTable';
 
-const inter = Inter({ subsets: ['latin'] })
+const Home = () => {
+  const [uploadedData, setUploadedData] = useState(null);
+  const [jobSummary, setJobSummary] = useState(null);
 
-export default function Home() {
+  const handleUpload = async (data) => {
+    try {
+      setUploadedData(data.employees);
+
+      const summary = data.summary;
+      setJobSummary(summary);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+      <div className="m-2 p-5">        <UploadForm onUpload={handleUpload}/>
+
+        {uploadedData && (
+            <div >
+              <hr className="mt-10 mb-2 border-1"/>
+              <h2 className="text-xl font-bold mb-4 py-2">Employee Information</h2>
+              <EmployeeTable employees={uploadedData}/>
+
+              <hr className="mt-10 mb-2 border-1"/>
+              {jobSummary && (
+                  <div>
+                    <h2 className="text-xl font-bold mb-4 py-2">Jobs Summary</h2>
+                    <JobSummaryTable jobSummary={jobSummary}/>
+                  </div>
+              )}
+            </div>
+        )}
+      </div>
+
+  );
+};
+
+export default Home;

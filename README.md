@@ -60,3 +60,27 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+## MY EXPLANATION
+- I have used Spring Boot for the backend and Next.js for the frontend.
+- to run the backend, you need to run the main method in the CsvParserApplication class.
+- the backend is running on port 8080.
+- the frontend is running on port 3000.
+- to run the frontend, you need to run the following commands:
+    - npm install
+    - npm run dev
+- I have used the following libraries:
+- Backend:
+    - lombok: to generate getters and setters
+    - spring-boot-starter-web: to create a spring boot application
+    - spring-boot-starter-test: to create unit tests
+- Frontend : 
+    - axios: to make http requests
+    - react-bootstrap: to use bootstrap components
+    - react-dropzone: to create a dropzone
+    - react-icons: to use icons
+    - react-paginate: to create a pagination
+    - react-table: to create a table
+    - react-toastify: to create a toast
+    - sass: to use sass
+    - typescript: to use typescript  
