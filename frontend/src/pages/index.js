@@ -1,13 +1,18 @@
-import { Inter } from 'next/font/google'
+import { Inter } from 'next/font/google';
+import ProcessUploadButton from '@/pages/ProcessUploadButton';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center', // Set the container height to full viewport height
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
+      <div style={containerStyle}>
+        <ProcessUploadButton />
+      </div>
+  );
 }
