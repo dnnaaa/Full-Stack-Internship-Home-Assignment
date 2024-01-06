@@ -18,7 +18,7 @@ Build a CSV Parser.
 - Read the assignment carefully.
 
 ## Description
-You are invited to create a CSV parser using Java/Spring Boot, and build UI to display results using Next.js/React.
+You are invited to create a CSV parser using Java/Spring Boot, and builda a simple UI to display results using Next.js/React.
 
 ## Assignment
 
@@ -44,8 +44,8 @@ Respect the following design flow:
 ![Frontend interfaces](./static/interfaces.png)
 
 - **Interface-1**: Contain an upload button.
-- **Interface-2**: The Process button is added when you choose a file.
-- **Interface-3**: 2 Tables showing the processing results.
+- **Interface-2**: The process button is added when you choose a file.
+- **Interface-3**: 2 Tables showing the processing results when the processing is finished.
 
 **Table 1**: Employee information, displays a paginated list of employees.
 
@@ -55,7 +55,6 @@ Respect the following design flow:
 - Write a concise, easy to understand code.
 - Use good practices.
 - Write unit tests for your java code.
-- Append to this README your approach and provide instructions to run your project.
 
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
