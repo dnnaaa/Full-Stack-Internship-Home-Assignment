@@ -31,6 +31,26 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- Add embedded database dependency here -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- Add database settings profile activation here -->
+		<profiles>
+			<profile>
+				<id>database-settings</id>
+				<activation>
+					<activeByDefault>true</activeByDefault>
+				</activation>
+			</profile>
+		</profiles>
+		
+		<!-- Add other dependencies here -->
+		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
