@@ -36,3 +36,26 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+*update your Node.js version to v18.17.0:
+```bash
+>nvm install 18.17.0
+>nvm use 18.17.0
+```
+
+*axios:It's a popular JavaScript library used for making HTTP requests from the browser. It simplifies the process of sending asynchronous HTTP requests and handling responses.
+```bash
+>npm install axios
+```
+
+*bootstrap:A front-end framework that provides pre-designed components and styles for building responsive web pages quickly.
+```bash
+>npm install bootstrap
+```
+
+*MUI (Material-UI): A React UI framework offering customizable components following Material Design principles for creating visually appealing and functional user interfaces.
+```bash
+npm install @mui/material
+```
+
+

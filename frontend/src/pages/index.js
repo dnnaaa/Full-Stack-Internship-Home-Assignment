@@ -1,13 +1,25 @@
-import { Inter } from 'next/font/google'
+import { useState } from 'react';
+import UploadFile from '../components/PrincipalePage';
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+const Index = () => {
+  const [file, setFile] = useState(null);
+  const [employees, setEmployees] = useState([]);
+
+  const processFile = async () => {
+
+    const processedEmployees = []; 
+
+    setEmployees(processedEmployees);
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div>
+      <h1>Upload Employee CSV</h1>
+      <UploadFile setFile={setFile} />
+     
+    </div>
+  );
+};
+
+export default Index;
