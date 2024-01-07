@@ -1,13 +1,37 @@
-import { Inter } from 'next/font/google'
+// pages/index.js
+import React, { useState } from 'react';
+import FileUpload from '../../../../../githubprojrect/Full-Stack-Internship-Home-Assignment/frontend/src/components/FileUpload';
+import ProcessButton from "../../../../../githubprojrect/Full-Stack-Internship-Home-Assignment/frontend/src/components/ProcessButton";
 
-const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+const HomePage = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileSelect = (file) => {
+
+    if (file && file.type === 'text/csv') {
+      setSelectedFile(file);
+
+    } else {
+      // Handle case where the selected file is not a CSV
+      alert('Please choose a CSV file.');
+    }
+  };
+
+
+  const handleUploadClick=()=>{
+    console.log(selectedFile)
+
+
+  }
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+      <div className="container flex flex-col justify-center items-center bg-amber-50 w-full h-screen gap-8">
+        <FileUpload onFileSelect={handleFileSelect} />
+        <div className="w-96 flex flex-col justify-center items-center ">
+          {selectedFile && <ProcessButton  onProcessClick={handleUploadClick} />}
+        </div>
+      </div>
+  );
+};
+
+export default HomePage;
