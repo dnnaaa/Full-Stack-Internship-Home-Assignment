@@ -76,16 +76,20 @@ Make sure you have the following installed on your system:
 ## Project Structure
 The backend is structured around a Spring Boot application with the following key components:
 
-## Employee Class:
+## Employee Class
 - Defines the data structure for an employee, including fields such as id, name, jobTitle, and salary.
 
-## CSVParser Class:
+## CSVParser Class
 - Provides functionality to parse CSV files containing employee data.
 - Calculates average salary for each job title.
 
-## CsvController Class:
+## CsvController Class
 - Defines REST endpoints for file parsing and calculating average salaries.
 - Uses CSVParser for processing.
+
+## CsvParser Unit Tests
+
+This set of unit tests focuses on validating the functionality of the CsvParser class methods. The tests cover parsing CSV data, reading CSV content, and calculating average salaries for different job titles.
 
 ## Instructions to Run Backend
 - Clone the repository.
@@ -101,7 +105,7 @@ The frontend is built using Next.js and React. The components include:
 
 - Provides an interface to upload CSV files.
 
-## ResultsTable Component:
+## ResultsTable Component
 
 - Displays a paginated list of employees and the average salary for each job title.
 
