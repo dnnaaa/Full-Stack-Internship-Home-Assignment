@@ -1,13 +1,14 @@
 import { Inter } from 'next/font/google'
+import MainUI from "@/components/MainUi";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`min-h-screen p-14 flex flex-col justify-center ${inter.className}`}
     >
-      DNA Engineering Full-Stack Internship Home Assignment
+      <MainUI/>
     </main>
   )
 }

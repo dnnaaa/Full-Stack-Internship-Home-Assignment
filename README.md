@@ -8,6 +8,8 @@ Build a CSV Parser.
 - [What we expect](#what-we-expect)
 - [Bonus points](#bonus-points)
 
+
+
 ## Prerequisites
 - Java 17
 - Node Js v20.10.0
@@ -60,3 +62,25 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+# My Approach and instructions to run my project
+### Explaining the backend code structure
+The backend project contains the following packages, each class and methods in these packages is well commented for the explanation purpose
+- ma.dnaengineering.backend.Controllers: That contains the web controllers
+- ma.dnaengineering.backend.services: Contains the class responsible for processing the uploaded file
+- ma.dnaengineering.backend.beans: Contains a single class FileData that has as its attributes information like the name of employees, job title and so on
+The unit test is performed is the ControllerTest class, the code test if the method for processing the file is working as expected
+### Explaining the frontend project structure
+The directory named components, under the source directory, contains all the components used to make the interface. These components have comprehensive names
+The MainUI component is then rendered with the index.js file
+### Running the project
+In to run the java project, we have just to execute the following command :java -jar [where_the_project_is_located]\Full-Stack-Internship-Home-Assignment\backend\target\backend.jar
+We should have java on in the environment variables path
+
+To run the frontend project, we have just to run the following commands in a terminal:
+- cd [where_the_project_is_located]\Full-Stack-Internship-Home-Assignment\frontend
+- npm run dev
+Still we assume that you have Node environment in your computer
+
+If all the server are running, you can go and hint http://localhost:3000 in your web browser
+You should be able to see a button for uploading a file
