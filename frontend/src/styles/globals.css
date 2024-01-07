@@ -7,3 +7,90 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+
+#submitFileButton
+{
+ visibility: hidden;
+ background-color: #04AA6D; /* Green */
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+
+}
+
+
+
+
+/* Style for the container div */
+div {
+  margin: 20px;
+}
+
+/* Style for the h1 heading */
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+/* Style for the table headings */
+th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style for the table cells */
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Style for alternating row colors */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect on table rows */
+tbody tr:hover {
+  background-color: #e6f7ff;
+}
+
+
+
+/* EmployeeTable.css */
+
+.pagination {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  margin: 0 4px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: #fff;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  outline: none;
+}
+
+.pagination-button:disabled {
+  background-color: #ddd;
+  color: #999;
+  border: 1px solid #ddd;
+  cursor: not-allowed;
+}
+

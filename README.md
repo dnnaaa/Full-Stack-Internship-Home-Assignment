@@ -60,3 +60,23 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+## How to run this project
+### Backend
+- using maven cli tool and with JDK 17 installed, execute the following command in **backend** directory:
+```bash
+mvn clean install
+mvn spring-boot:run
+```
+- to run the unit test, execute the following command:
+```bash
+mvn test
+```
+### Frontend
+- using npm cli tool and nodejs v20, execute the following command in **frontend** directory:
+```bash
+npm i
+npm run build
+npm start
+```
+  
