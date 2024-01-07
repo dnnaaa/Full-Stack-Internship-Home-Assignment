@@ -60,3 +60,33 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+## Steps
+
+
+#### Setting up Node Version Manager (NVM):
+
+- Install Node Version Manager (NVM) to manage Node.js versions.
+- Use NVM to switch between Node.js versions based on project requirements.
+
+#### Component Styling with CSS Modules:
+- Utilize CSS Modules for component styling.
+- Create separate CSS modules for each component to encapsulate styles.
+#### Fetching and Displaying Data:
+
+- Implement functionality to upload a CSV file.
+- Utilize the fetch API to send the file to a server for processing.
+- Retrieve and display employee data and job summary data from the server.
+- Update component state to reflect data changes and trigger re-renders.
+
+#### Enhancing Pagination in EmployeeTable:
+
+- Improve pagination in the EmployeeTable component to display page numbers.
+- Implement navigation buttons for previous and next pages.
+- Enhance pagination to show a limited number of page buttons with ellipsis for better user experience.
+
+#### Backend:
+- Implementing a Spring Boot application to handle backend operations.
+- Creating a ServiceData class to process CSV files and provide employee-related functionalities.
+- Developing a ControllerData class with endpoints to upload CSV files and retrieve employee information, including job title summaries.
+- Including unit tests to ensure the functionality and reliability of the backend services.
