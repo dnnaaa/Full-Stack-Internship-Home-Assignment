@@ -60,3 +60,64 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+
+# Employee Data Processing Project
+
+## Overview
+This project aims to provide a simple web-based application for parsing and analyzing employee data from CSV files. The backend is built using Spring Boot, and the frontend is developed using Next.js/React.
+
+## Prerequisites
+Make sure you have the following installed on your system:
+
+- Java 17
+- Node.js v20.10.0
+
+## Project Structure
+The backend is structured around a Spring Boot application with the following key components:
+
+## Employee Class
+- Defines the data structure for an employee, including fields such as id, name, jobTitle, and salary.
+
+## CSVParser Class
+- Provides functionality to parse CSV files containing employee data.
+- Calculates average salary for each job title.
+
+## CsvController Class
+- Defines REST endpoints for file parsing and calculating average salaries.
+- Uses CSVParser for processing.
+
+## CsvParser Unit Tests
+
+This set of unit tests focuses on validating the functionality of the CsvParser class methods. The tests cover parsing CSV data, reading CSV content, and calculating average salaries for different job titles.
+
+## Instructions to Run Backend
+- Clone the repository.
+- Navigate to the backend directory.
+- Run the Spring Boot application.
+
+# Frontend (Next.js/React)
+
+## Project Structure
+The frontend is built using Next.js and React. The components include:
+
+## FileUpload Component:
+
+- Provides an interface to upload CSV files.
+
+## ResultsTable Component
+
+- Displays a paginated list of employees and the average salary for each job title.
+
+## Instructions to Run Frontend
+
+- Navigate to the frontend directory.
+- Install dependencies using **npm install**.
+- Run the application using **npm run dev**.
+
+# Usage
+
+- Open your web browser and go to http://localhost:3000.
+- Use Interface-1 to upload a CSV file.
+- Interface-2 will display a Process button after choosing a file.
+- Click the Process button to see Interface-3 with two tables displaying employee information and job title summaries.
