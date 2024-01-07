@@ -1,13 +1,14 @@
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Link from 'next/link';
 
 export default function Home() {
+  
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
+    <div className="centered-container">
+      <h2>Welcome to our CSV parser app</h2>
+      <Link href="/upload">
+        <button>Upload</button>
+      </Link>
+    </div>
+  );
+  
 }

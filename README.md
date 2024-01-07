@@ -7,6 +7,7 @@ Build a CSV Parser.
 - [Assignment](#assignment)
 - [What we expect](#what-we-expect)
 - [Bonus points](#bonus-points)
+- [My Approach](#my-approach)
 
 ## Prerequisites
 - Java 17
@@ -60,3 +61,31 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+### My Approach
+## Backend:
+- verified the necessary dependencies for spring.
+- Created a service (EmployeeService) with the anotation @Service to read and process the Employee CSV file.
+- Implemented controller endpoints to handle file uploads (/api/employees/upload), retrieve employees (/api/employees//getEmployees), , and job summaries  (/api/employees/upload/getJobSummary) with the anotation @RestController.
+- Enabled CORS using the @CrossOrigin annotation in the controller to allow cross-origin requests from the frontend.
+## Frontend
+- installing the necessary packages such as axios.
+- Created a FileUpload Component (FileUploader.js) to handle file uploads and i used axios to make requests to the backend.
+- Created an Upload Page (pages/upload) that uses the FileUploader component and Displayed an alert when a file is uploaded.
+- Created an Employees Component (Employees.js) to display employee data and average salary per job title in a table with pagination. i used axios to fetch employee data and job summay from the backend.
+-  Created a Process Page (pages/process) that uses the Employees Component and display the table of employees with pagination and the job summary.
+-  i added some styles to enhance the user interface.
+## Testing
+-i tested the connetion between the backend and frontend.
+## instructions to run the project
+-  run the Backend (Spring Boot) by navigating to the BackendApplication.java.
+-  The backend will run on "http://localhost:9093".
+-  nagivate to the frontend folder and run the frontend with the command 'npm run dev'
+-  The frontend will run on "http://localhost:3000"
+-  Access "http://localhost:3000/upload" to go to the file upload page.
+-  Upload the CSV file avaible on `data/employees.csv` using the "Upload" button.
+-  after a  successful upload an alert will be displayed.
+-  Click on the "Process" button to navigate to the process page.
+-  The process page (http://localhost:3000/process) will show the employee data table and job summary table.
+
+
+
