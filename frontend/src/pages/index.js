@@ -1,13 +1,43 @@
-import { Inter } from 'next/font/google'
+import React, { useState } from "react";
+import UploadFile from "../Interfaces/page1";
+import Processing from "../Interfaces/page2";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Employees, Summary } from "./api/api";
 
-const inter = Inter({ subsets: ['latin'] })
+const App = () => {
+  const [employees, setEmployees] = useState([]);
+  const [jobTitleAverages, setJobTitleAverages] = useState({});
+  
+  
+  const handleFileUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
 
-export default function Home() {
+    try {
+      const employeesResponse = await Employees(formData)
+        .then((resp) => setEmployees(resp.data))
+        .catch(console.error("Error uploading file"));
+
+      const avgSalaryResponse = await Summary(formData)
+        .then((resp) => setJobTitleAverages(resp.data))
+        .catch(console.error("Error uploading file"));
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  const appStyle = {
+    fontFamily: 'Poppins, sans-serif',
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div style={appStyle}>
+      <UploadFile onFileUpload={handleFileUpload} />
+      <Processing
+        employees={employees}
+        jobTitleAverages={jobTitleAverages}
+      />
+    </div>
+  );
+};
+
+export default App;
