@@ -1,5 +1,13 @@
-import '@/styles/globals.css'
+// pages/_app.js
+import { FileProvider } from '../context/FileContext';
+import '../styles/globals.css';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return (
+    <FileProvider>
+      <Component {...pageProps} />
+    </FileProvider>
+  );
 }
+
+export default App;

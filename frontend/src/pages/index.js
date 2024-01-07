@@ -1,13 +1,13 @@
-import { Inter } from 'next/font/google'
+// pages/index.js
+import Interface1 from '../components/Interface1';
+import { FileProvider } from '../context/FileContext';
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+const Index = () => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <FileProvider>
+      <Interface1 />
+    </FileProvider>
+  );
+};
+
+export default Index;
