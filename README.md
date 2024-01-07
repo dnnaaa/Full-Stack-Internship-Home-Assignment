@@ -1,6 +1,37 @@
 ## DNA Engineering Full-Stack Assignment
 Build a CSV Parser.
 
+## My Task
+- generate the backend using spring
+- generate the front end using react/nest
+- applay the unit Test using JUint and Mockito
+
+## Interfaces
+
+the first interface:
+
+![Frontend interfaces](./static/interface1.png)
+
+the second interface:
+
+![Frontend interfaces](./static/interface2.png)
+
+the third interface:
+
+![Frontend interfaces](./static/interface3.png)
+
+the test:
+
+![Frontend interfaces](./static/unit_test.png)
+
+the  Packaging:
+
+![Frontend interfaces](./static/packaging_backend.png)
+
+![Frontend interfaces](./static/packaging_frontend.png)
+
+
+
 ## Table of content
 - [Prerequisites](#prerequisites)
 - [Before We begin](#before-we-begin)
