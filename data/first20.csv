@@ -1,0 +1,21 @@
+id,employee_name,job_title,salary
+1,Jon Ball,Mobile App Developer,7348.0
+2,Denise Nelson,IT Consultant,10237.0
+3,Amanda Harris,Full Stack Developer,6632.0
+4,Danielle Moore,DevOps Engineer,13843.0
+5,Lindsey Young,Project Manager (IT),1499.0
+6,Diane Potter,Cybersecurity Specialist,5035.0
+7,John Griffin,Systems Administrator,7397.0
+8,Tiffany Zimmerman,Software Developer,14662.0
+9,Raymond Lowery,UX/UI Designer,1601.0
+10,Michael Gonzalez,IT Consultant,8498.0
+11,Kimberly Allen,IT Support Specialist,13428.0
+12,Heather Griffith,Data Scientist,13593.0
+13,Jason Johnson,IT Support Specialist,10087.0
+14,Ariana Blair,Cloud Architect,11460.0
+15,Shawna Boone,Systems Administrator,9896.0
+16,David Soto,Cloud Architect,2780.0
+17,Nancy Smith,Database Administrator,1613.0
+18,Christopher Lozano,Systems Analyst,13077.0
+19,Donald White,IT Trainer,1866.0
+20,Michael Sanchez,Business Analyst,4736.0
