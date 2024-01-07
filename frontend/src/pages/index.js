@@ -1,13 +1,25 @@
-import { Inter } from 'next/font/google'
+import React from 'react';
+import FileUpload from '@/components/FileUpload';
+import Tables from '@/components/Tables';
+import useCSVParser from '@/hooks/useCSVParser';
 
-const inter = Inter({ subsets: ['latin'] })
+const Home = () => {
+  const {
+    file,
+    employees,
+    jobSummary,
+    showTables,
+    handleFileChange,
+    handleProcessClick,
+  } = useCSVParser();
 
-export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold text-blue-500">CSV Parser</h1>
+      <FileUpload onFileChange={handleFileChange} onProcessClick={handleProcessClick} showTables={showTables} />
+      {showTables && <Tables employees={employees} jobSummary={jobSummary} />}
+    </div>
+  );
+};
+
+export default Home;
