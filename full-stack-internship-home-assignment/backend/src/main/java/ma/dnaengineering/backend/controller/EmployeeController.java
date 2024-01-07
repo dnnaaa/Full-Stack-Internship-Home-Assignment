@@ -24,29 +24,26 @@ public class EmployeeController {
 
 	@Autowired
 	private FileService service;
-	
+
 	public EmployeeController() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	@PostMapping("/parse")
-    public ResponseEntity<Map<String, Object>> parseCSV(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body(Map.of("error", "Please provide a CSV file."));
-        }
+	public ResponseEntity<Map<String, Object>> parseCSV(@RequestParam("file") MultipartFile file) {
+		if (file.isEmpty()) {
+			return ResponseEntity.badRequest().body(Map.of("error", "Please provide a CSV file."));
+		}
 
-        try {
-            List<Employee> employees = service.readFile(file);
-            Map<String, Double> jobTitleAverages = service.calculateAverageSalaryByJobTitle(employees);
+		try {
+			List<Employee> employees = service.readFile(file);
+			Map<String, Double> jobTitleAverages = service.calculateAverageSalaryByJobTitle(employees);
 
-            return ResponseEntity.ok(Map.of(
-                    "employees", employees,
-                    "jobTitleAverages", jobTitleAverages
-            ));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("error", "Failed to process CSV file."));
-        }
-    }
+			return ResponseEntity.ok(Map.of("employees", employees, "jobTitleAverages", jobTitleAverages));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of("error", "Failed to process CSV file."));
+		}
+	}
 }
