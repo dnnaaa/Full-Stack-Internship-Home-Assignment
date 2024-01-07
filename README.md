@@ -1,3 +1,26 @@
+#In this assignment, I worked on the backend part where I created the following components:
+
+- Entity: Employee
+- Controller: EmployeeController
+- Repository: EmployeeRepository
+- Service: EmployeeService
+- Unit tests for each of the components
+
+#The service contains three essential methods:
+1. `processAndSaveData`: This method saves data to the database from a CSV file.
+2. `fetchEmployeeList`: Fetches employee information.
+3. `getAverageSalary`: Fetches job summary.
+
+#The REST API for my project includes the following endpoints:
+- `/uploadcsv`: Used to upload a file and save it in the database.
+- `/employeeInformation`: Retrieves employee information.
+- `/jobsSummary`: Retrieves job summary.
+
+Postman is utilized for testing the API.
+
+
+
+
 ## DNA Engineering Full-Stack Assignment
 Build a CSV Parser.
 
