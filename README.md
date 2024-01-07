@@ -1,62 +1,151 @@
 ## DNA Engineering Full-Stack Assignment
 Build a CSV Parser.
 
-## Table of content
-- [Prerequisites](#prerequisites)
-- [Before We begin](#before-we-begin)
-- [Assignment](#assignment)
-- [What we expect](#what-we-expect)
-- [Bonus points](#bonus-points)
+## Project Structure
+```
+Full-Stack-Internship-Home-Assignment
 
-## Prerequisites
-- Java 17
-- Node Js v20.10.0
+  |__ backend
+        |__ src
+            |__ main
+                |__ java/ma/dnaengineering/backend
+                    |__ dto
+                        |__ EmployeeDTO.java
+                        |__ SalarySummaryDTO.java
+                    |__ entities
+                        |__ Employee.java
+                    |__ repository  
+                        |__ EmployeeRepository.java
+                    |__ service
+                        |__ EmployeeService.java
+                    |__ web
+                        |__ EmployeeController.java
+                    |__ BackendApplication.java
+                |__ resources
+                    |__ application.properties
 
-## Before we begin
-- In this assignment, you will be asked to write, and test your code.
-- Make sure you respect clean code guidelines.
-- Read the assignment carefully.
+  |__ data
+        |__ csv files
 
-## Description
-You are invited to create a CSV parser using Java/Spring Boot, and build UI to display results using Next.js/React.
+  |__ frontend
+        |__ public
+        |__ src
+            |__ components
+                |__ EmployeeComponent.js
+                |__ FileUploadComponent.js
+                |__ SalarySummaryComponent.js
+            |__ helpers
+                |__ Utils.js
+            |__ pages
+                |__ api
+                |__ _app.js
+                |__ index.js
+            |__ styles
+                |__ global.css
+            |__ package.json
+            |__ ...
+         
+```
+<br>
 
-## Assignment
+## Project Architecture
+1. User selects a file, clicks "Upload," and the file is sent to the backend via a POST request with Rest API.
+2. Backend parses and saves the data, then returns a success response, now the "Process" button becomes enabled, and the user can click it.
+3. After clicking on the button, frontend sends a request to process data. Backend retrieves, processes, and returns the result.
+4. Frontend displays the result in two tables.
+<br>
+As shown in the following table : 
+<table align="center">
+  <tr>
+    <th>Upload</th>
+    <th>Process & Display Tables</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/7.png"/></td>
+    <td><img src="screenshots/8.png"/></td>
+  </tr>
+</table>
+<br>
 
-### Backend (CSV Parser)
+## Backend
+### 1. Test the Service
+```java
+@ExtendWith(MockitoExtension.class)
+public class EmployeeServiceTest {
 
-#### Tasks
+    @Mock
+    private EmployeeRepository employeeRepository;
+    @InjectMocks
+    private EmployeeService employeeService;
+    @Test
+    public void whenParseCSVFile_thenCorrectlySaveEmployees() throws Exception {
+        String csvContent = "ID,employeeName,JobTitle,Salary\n1,John Doe,Developer,70000\n2,Jane Doe,Developer,80000";
+        InputStream is = new ByteArrayInputStream(csvContent.getBytes());
+        MultipartFile mockFile = new MockMultipartFile("file", "test.csv", "text/csv", is);
 
-- Write a service in Java that will read and process the attached CSV(comma separated values) file at `data/employees.csv`.
+        employeeService.parseCSVFile(mockFile);
 
-- This service should read, extract and process data in a suitable data structure.
+        verify(employeeRepository, times(2)).save(any(Employee.class));
+    }
+    @Test
+    public void whenCalculateAverageSalary_thenCorrectResult() {
 
-- Process this data to return the list of employees and a summary indicating the average salary for each job title.
+        List<Employee> employees = Arrays.asList(
+                new Employee(1, "John Doe", "Developer", 70000.0),
+                new Employee(2, "Jane Doe", "Developer", 80000.0),
+                new Employee(3, "Jim Beam", "Manager", 90000.0)
+        );
 
-### Frontend
+        Map<String, SalarySummaryDTO> result = employeeService.calculateAverageSalary(employees);
+        
+        assertThat(result).hasSize(2);
+        assertThat(result.get("Developer").getAverageSalary()).isEqualTo(75000.0);
+        assertThat(result.get("Manager").getAverageSalary()).isEqualTo(90000.0);
+    }
+}
+```
+<div align="center">
+  <img src="screenshots/9.png"/>
+</div>
 
-#### Tasks
-Implement a simple user interface that will allow the user to upload the file and display the results of your processing.
+### 2. Test with Postman
+<table align="center">
+  <tr>
+    <th>Upload</th>
+    <th>Process</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/10.png"/></td>
+    <td><img src="screenshots/11.png"/></td>
+  </tr>
+</table>
+<br>
 
-#### Interfaces
-
-Respect the following design flow:
-
-![Frontend interfaces](./static/interfaces.png)
-
-- **Interface-1**: Contain an upload button.
-- **Interface-2**: The Process button is added when you choose a file.
-- **Interface-3**: 2 Tables showing the processing results.
-
-**Table 1**: Employee information, displays a paginated list of employees.
-
-**Table 2**: Jobs summary, displays for each job title, the average salary for employees.
-
-## What we expect
-- Write a concise, easy to understand code.
-- Use good practices.
-- Write unit tests for your java code.
-- Append to this README your approach and provide instructions to run your project.
-
-## Bonus points
-- Implement your own CSV file parser instead of using a library.
-- Use design patterns.
+## Frontend
+<table align="center">
+  <tr>
+    <th>Upload</th>
+    <th>Upload Dialogue</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/1.png"/></td>
+    <td><img src="screenshots/2.png"/></td>
+  </tr>
+  <tr>
+    <th>Process</th>
+    <th>Display Tables</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/3.png"/></td>
+    <td><img src="screenshots/4.png"/></td>
+  </tr>
+  <tr>
+    <th>Employee Table</th>
+    <th>Average Salary Table</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/5.png"/></td>
+    <td><img src="screenshots/6.png"/></td>
+  </tr>
+</table>
+<br>
