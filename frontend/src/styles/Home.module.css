@@ -1,0 +1,20 @@
+/* styles/Home.module.css */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.page {
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.active {
+    background-color: #3498db;
+    color: #fff;
+}
