@@ -69,7 +69,6 @@ The button allowing users to upload a CSV file.
 
 ### Interface 2
 After selecting the CSV file, this app reveals a "Process File" button, indicating that the file is ready for processing.
-For demonstration purposes, a csv file with only the first 20 lines of employees.csv have been used.
 ![Interface 2](./screenshots/interface2.png)
 
 ### Interface 3
