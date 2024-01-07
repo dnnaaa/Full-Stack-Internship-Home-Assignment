@@ -60,3 +60,39 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+## Images from the Project
+
+### Interface 1
+The button allowing users to upload a CSV file.
+![Interface 1](./screenshots/interface1.png)
+
+### Interface 2
+After selecting the CSV file, this app reveals a "Process File" button, indicating that the file is ready for processing.
+For demonstration purposes, a csv file with only the first 20 lines of employees.csv have been used.
+![Interface 2](./screenshots/interface2.png)
+
+### Interface 3
+Post-processing, the employee data and the job details data gets displayed in a table format, obtained after the file is processed by the service.
+
+![Interface 3](./screenshots/interface3.png)
+
+## How to Run the Project
+
+### Frontend
+1. Navigate to the `frontend` folder.
+2. Run the following commands:
+   ```bash
+   npm install
+   npm start
+   ```
+3. This will install the necessary dependencies and start the frontend development server.
+
+### Backend
+1. Navigate to the `backend` folder.
+2. Run the following commands:
+   ```bash
+   mvn clean install
+   java -jar target/backend-0.0.1-SNAPSHOT.jar
+   ```
+3. This will clean the project, build it, and start the backend server using the generated JAR file.
