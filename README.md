@@ -60,3 +60,14 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+## Approach
+- When a file is upload it is parsed and the information is stored in an in-memory database.
+- Then the data is fetched and displayed by next.js/react client.
+
+## Instructions
+- To run this project clone the repository into a local machine.
+- The backend folder contains the spring boot api of the project.
+- Open it with an sprind boot supported IDE and run it.
+- The frontend folder contains the next.js/react app. 
+- Open it next.js/react supported IDE and run it.
+- Go to "http://localhost:3000" to view the client app.
