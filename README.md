@@ -1,62 +1,47 @@
-## DNA Engineering Full-Stack Assignment
-Build a CSV Parser.
+# Full Stack Internship Homework 
 
-## Table of content
-- [Prerequisites](#prerequisites)
-- [Before We begin](#before-we-begin)
-- [Assignment](#assignment)
-- [What we expect](#what-we-expect)
-- [Bonus points](#bonus-points)
+## overview 
 
-## Prerequisites
-- Java 17
-- Node Js v20.10.0
+This repository contains the code for the full stack lab homework. This task involves building a system that processes employee data from  CSV files, provides a user interface for uploading files, and displays the processing results.  
+## Features 
 
-## Before we begin
-- In this assignment, you will be asked to write, and test your code.
-- Make sure you respect clean code guidelines.
-- Read the assignment carefully.
+### Backend (Java/Spring Boot) 
 
-## Description
-You are invited to create a CSV parser using Java/Spring Boot, and build UI to display results using Next.js/React.
+#### CSV analysis 
 
-## Assignment
+- The backend provides services to parse employee data from  CSV files. - "CsvParserService" reads the CSV file, extracts employee information, and calculates the average salary for each position. 
+#### API endpoint 
 
-### Backend (CSV Parser)
+– The backend provides a RESTful API endpoint (“/test/parse-csv”) to trigger the CSV parsing process.  - The endpoint returns a JSON object containing a list of employees and the average salary for each position. 
+#### Data model 
 
-#### Tasks
+- Employee class represents an employee with attributes such as ID, name,  title, salary, etc. - "CsvParserService" processes and calculates average salary based on  employee data.  
+### Frontend (Next.js/React) 
 
-- Write a service in Java that will read and process the attached CSV(comma separated values) file at `data/employees.csv`.
+#### Interface-1:  File upload 
 
-- This service should read, extract and process data in a suitable data structure.
+- The first interface provides a simple  interface for uploading  CSV files. - Contains an "upload" button and handles file selection.  #### Interface 2: Process File 
 
-- Process this data to return the list of employees and a summary indicating the average salary for each job title.
+- After uploading the file, you will be able to access the second interface. - The uploaded file will be displayed and  a "Process" button will be displayed to trigger the backend processing. 
+ #### Interface-3: Show results 
 
-### Frontend
+- The third interface displays two tables. 
+- **Table 1:** Employee Information - Displays a paginated list of employees.  - **Table 2:** Job Summary - Shows the average salary for each position. 
+### Frontend styles 
 
-#### Tasks
-Implement a simple user interface that will allow the user to upload the file and display the results of your processing.
+- Frontend components are designed using CSS to ensure a clean and user-friendly interface.  - Styles include containers, upload buttons, processing buttons, and table styles. 
+ ## Use 
 
-#### Interfaces
+### Backend 
 
-Respect the following design flow:
+– Verify that Java and Maven are installed.  - Go to the "backend" directory.  - Run "mvn spring-boot:run" to start the backend server. 
+ ### front end 
 
-![Frontend interfaces](./static/interfaces.png)
+- Go to the "Frontend" directory.  - Run "npm install" to install dependencies.  - Run "npm run dev" to start the Next.js development server. 
+ Open your browser and  access the application by visiting "http://localhost:3000". 
+＃＃Bonus points 
 
-- **Interface-1**: Contain an upload button.
-- **Interface-2**: The Process button is added when you choose a file.
-- **Interface-3**: 2 Tables showing the processing results.
+- Implemented CSV parsing without using  external libraries. - Used design patterns in  backend implementation.  - Handled CORS in the backend to allow requests from the Next.js frontend. 
+ ## remarks 
 
-**Table 1**: Employee information, displays a paginated list of employees.
-
-**Table 2**: Jobs summary, displays for each job title, the average salary for employees.
-
-## What we expect
-- Write a concise, easy to understand code.
-- Use good practices.
-- Write unit tests for your java code.
-- Append to this README your approach and provide instructions to run your project.
-
-## Bonus points
-- Implement your own CSV file parser instead of using a library.
-- Use design patterns.
+- Configure paths and endpoints according to your project structure and requirements.
