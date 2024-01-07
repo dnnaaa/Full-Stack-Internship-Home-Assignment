@@ -7,3 +7,24 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+
+.container-ca {
+
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+
+
+}
+
+.container {
+  margin: auto;
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.btn{
+  color: gray;
+}

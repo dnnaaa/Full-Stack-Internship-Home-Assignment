@@ -1,13 +1,47 @@
-import { Inter } from 'next/font/google'
+// pages/index.js
+import React, { useState } from 'react';
+import axios from "axios";
 
-const inter = Inter({ subsets: ['latin'] })
+const Home = () => {
 
-export default function Home() {
+  const [file, setFile] = useState(null);
+
+
+
+
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleUploadClick = () => {
+    if (!file) {
+      return;
+    }
+
+    const formData = new FormData();
+ 
+    formData.append(
+      "file", file
+    );
+
+    axios.post("http://localhost:8081/api/upload", formData)
+
+
+  };
+ 
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div class='container-ca'>
+      <div class='container'>
+
+        <h1>Upload a CSV File</h1>
+        <input type='file' accept={'*.csv'} onChange={handleFileChange}/>
+        <button class='btn' onClick={handleUploadClick} >Upload </button>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
