@@ -1,62 +1,40 @@
-## DNA Engineering Full-Stack Assignment
-Build a CSV Parser.
+# CSV Parser and UI Display
 
-## Table of content
-- [Prerequisites](#prerequisites)
-- [Before We begin](#before-we-begin)
-- [Assignment](#assignment)
-- [What we expect](#what-we-expect)
-- [Bonus points](#bonus-points)
+This project is a CSV parser implemented in Java/Spring Boot for the backend and Next.js/React for the frontend. It provides a simple user interface to upload a CSV file, parse its content, and display the results.
 
 ## Prerequisites
+
 - Java 17
-- Node Js v20.10.0
+- Node.js v20.10.0
 
-## Before we begin
-- In this assignment, you will be asked to write, and test your code.
-- Make sure you respect clean code guidelines.
-- Read the assignment carefully.
-
-## Description
-You are invited to create a CSV parser using Java/Spring Boot, and build UI to display results using Next.js/React.
-
-## Assignment
+## Getting Started
 
 ### Backend (CSV Parser)
 
-#### Tasks
-
-- Write a service in Java that will read and process the attached CSV(comma separated values) file at `data/employees.csv`.
-
-- This service should read, extract and process data in a suitable data structure.
-
-- Process this data to return the list of employees and a summary indicating the average salary for each job title.
+1. Write a service in Java that reads and processes a CSV file.
+2. The service returns a list of employees and a summary indicating the average salary for each job title.
 
 ### Frontend
 
-#### Tasks
-Implement a simple user interface that will allow the user to upload the file and display the results of your processing.
+1. Implement a user interface using Next.js/React.
+2. The interface allows users to upload a CSV file and displays the parsed results in two tables:
+   - Table 1: Employee information (paginated list of employees).
+   - Table 2: Jobs summary (average salary for each job title).
+3. Bootstrap and react-paginate packages are required for styling and pagination.
 
-#### Interfaces
+   ```bash
+   # Install Bootstrap and react-paginate
+   npm install bootstrap react-paginate
+## Usage
 
-Respect the following design flow:
+1. Clone the repository.
+2. Run the Java/Spring Boot backend.
+3. Run the Next.js/React frontend.
+4. Access the UI in your browser and use the provided features.
 
-![Frontend interfaces](./static/interfaces.png)
 
-- **Interface-1**: Contain an upload button.
-- **Interface-2**: The Process button is added when you choose a file.
-- **Interface-3**: 2 Tables showing the processing results.
+## Contributors
 
-**Table 1**: Employee information, displays a paginated list of employees.
+- AZ EDDINE BELGUITI
 
-**Table 2**: Jobs summary, displays for each job title, the average salary for employees.
 
-## What we expect
-- Write a concise, easy to understand code.
-- Use good practices.
-- Write unit tests for your java code.
-- Append to this README your approach and provide instructions to run your project.
-
-## Bonus points
-- Implement your own CSV file parser instead of using a library.
-- Use design patterns.
