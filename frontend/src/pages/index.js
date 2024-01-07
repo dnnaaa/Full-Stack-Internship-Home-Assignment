@@ -1,13 +1,24 @@
-import { Inter } from 'next/font/google'
+import React, { useState } from 'react';
+import UploadButton from '../components/UploadButton';
+import { useFile } from '@/context/FileContext';
+import { useRouter } from 'next/router';
 
-const inter = Inter({ subsets: ['latin'] })
+const Home = () => {
+  const { setFile } = useFile();
+  const router = useRouter();
 
-export default function Home() {
+  const handleFileChange = (selectedFile) => {
+    setFile(selectedFile);
+    router.push('/cancelProcess');
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div className="flex items-center justify-center min-h-screen bg-blue-500">
+      <div className="text-center p-8 border-2 border-white rounded-md bg-white shadow-md w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2">
+        <UploadButton onFileChange={handleFileChange} />
+      </div>
+    </div>
+  );
+};
+
+export default Home;
