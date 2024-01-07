@@ -60,3 +60,18 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+## My approach 
+- I have create controller end point and a service for processing data in the CSV
+- I have create the entities to represent the employee data and job summary
+- I have create pages for each interface in the frontend project, and styling with bootstrap
+
+## Running
+- Backend
+```bash
+mvn clean spring-boot:run
+```
+- Frontend
+```bash
+npm run dev --turbo 
+```
