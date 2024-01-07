@@ -1,13 +1,29 @@
-import { Inter } from 'next/font/google'
+import React, { useState } from 'react';
+import FileUploader from './components/FileUploader';
+import EmployeeTable from './components/EmployeeTable';
+import JobSummaryTable from './components/JobSummaryTable';
 
-const inter = Inter({ subsets: ['latin'] })
+const App = () => {
+  const [csvData, setCSVData] = useState(null);
 
-export default function Home() {
+  const handleFileUpload = (data) => {
+    setCSVData(data);
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div>
+      <h1>CSV Parser</h1>
+      <FileUploader onFileUpload={handleFileUpload} />
+      {csvData && (
+        <div>
+          <h2>Employee Information</h2>
+          <EmployeeTable employees={csvData.employeesByJobTitle} />
+          <h2>Job Summary</h2>
+          <JobSummaryTable employeesByJobTitle={csvData.employeesByJobTitle} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
