@@ -60,3 +60,34 @@ Respect the following design flow:
 ## Bonus points
 - Implement your own CSV file parser instead of using a library.
 - Use design patterns.
+
+## Approach:
+
+#### Backend (Java/Spring Boot):
+- Created three main components: **EmployeeController**, **EmployeeService**, and **Employee** model.
+- The **EmployeeController** exposes an endpoint for uploading the CSV file and processes it using the **EmployeeService**.
+- **EmployeeService** handles the file reading, employee data extraction, and calculation of average salary by job title.
+- **Employee** model represents the structure of an employee.
+- implimented error handling scenarios such as incorrect file formats all located in **Exceptions** folder
+- implimenting Unit Test for **EmployeeService**
+
+#### Frontend (Next.js/React):
+- Created React components for the UI: **UploadComponent**, **EmployeeTable**, **JobSummaryTable**, and a view **Employees**.
+- **Employees** only render the three components 
+- **UploadComponent** provides file upload functionality and triggers the processing of data.
+- **EmployeeTable** displays a paginated list of employees, while **JobSummaryTable** shows the average salary for each job title.
+- create **api/proccessCSV** file that made the request to back-end and set the results to its states
+- implimented validation rules on the file to make sure only csv files are allowed to be sent to back-end
+
+## instructions to run the project:
+
+#### Backend (Java/Spring Boot):
+- Ensure Java 17 is installed.
+- Run the Spring Boot application containing the **controllers**, **services**, **models**, and **Exceptions**.
+
+#### Frontend (Next.js/React):
+- Ensure Node.js v20.10.0 is installed.
+- Navigate to the frontend directory.
+- Run **npm install** to install dependencies.
+- Start the Next.js/React application with **npm run dev**.
+- Access the application in your browser at **http://localhost:3000/**.
