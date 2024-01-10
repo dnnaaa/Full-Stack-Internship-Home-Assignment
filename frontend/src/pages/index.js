@@ -1,13 +1,43 @@
-import { Inter } from 'next/font/google'
+import React, { useState } from "react";
+import FileUploadComponent from "./components/FileUploadComponent";
+import ProcessingResultsComponent from "./components/ProcessingResultsComponent";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { getEmployees, getSummary } from "./api/csvapi";
 
-const inter = Inter({ subsets: ['latin'] })
+const App = () => {
+  const [employees, setEmployees] = useState([]);
+  const [jobTitleAverages, setJobTitleAverages] = useState({});
 
-export default function Home() {
+  const handleFileUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await getEmployees(formData)
+        .then((resp) => setEmployees(resp.data))
+        .catch(console.error("Error uploading file"));
+
+      const avgSalaryResponse = await getSummary(formData)
+        .then((resp) => setJobTitleAverages(resp.data))
+        .catch(console.error("Error uploading file"));
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      DNA Engineering Full-Stack Internship Home Assignment
-    </main>
-  )
-}
+    <div>
+      <div className="mb-4 display-9 p-2 m-2" >
+        <b>CSV Parser</b>
+      </div>
+
+      <FileUploadComponent onFileUpload={handleFileUpload} />
+      <ProcessingResultsComponent
+        employees={employees}
+        jobTitleAverages={jobTitleAverages}
+      />
+    </div>
+  );
+};
+
+export default App;
