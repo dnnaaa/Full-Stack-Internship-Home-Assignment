@@ -10,8 +10,7 @@
 5. [Frontend Requirements](#frontend-requirements)  
 6. [Process Flow](#process-flow)  
 7. [Submission Process](#submission-process)  
-8. [Optional Enhancements](#optional-enhancements)  
-9. [Estimated Duration](#estimated-duration)  
+8. [Optional Enhancements](#optional-enhancements)
 
 ---
 
