@@ -17,10 +17,11 @@ public class Job {
     private Integer id;
 
     @NotNull
+    @Column(nullable = false)
     private String title;
 
     @NotNull
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT" , nullable = false)
     private String description;
 
     private String location;
