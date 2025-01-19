@@ -10,7 +10,11 @@ import {
   TableHead,
   TableRow,
   Paper,
+  IconButton,
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add'; 
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -39,54 +43,61 @@ const JobList = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-gray-300 mb-6">Job Management</h1>
-      <Button
-        variant="contained"
-        color="primary"
-        className="mb-4"
-        onClick={() => navigate('/add-job')}
-      >
-        Add Job
-      </Button>
-      <TableContainer component={Paper} className="shadow-lg bg-gray-800">
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell className="text-gray-300">Title</TableCell>
-              <TableCell className="text-gray-300">Location</TableCell>
-              <TableCell className="text-gray-300">Salary</TableCell>
-              <TableCell className="text-gray-300">Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {jobs.map((job) => (
-              <TableRow key={job.id} className="hover:bg-gray-700">
-                <TableCell>{job.title}</TableCell>
-                <TableCell>{job.location}</TableCell>
-                <TableCell>{job.salary}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    className="mr-2"
-                    onClick={() => navigate(`/edit-job/${job.id}`)}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    onClick={() => handleDelete(job.id)}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
+    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-gray-300">
+      <div className="p-4 md:p-6 w-full max-w-5xl">
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-300">
+            Job Management
+          </h1>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => navigate('/add-job')}
+          >
+            Add Job
+          </Button>
+        </div>
+
+        {/* Responsive table container */}
+        <TableContainer component={Paper} className="shadow-lg bg-gray-800">
+          <Table className="w-full">
+            <TableHead>
+              <TableRow>
+                <TableCell className="text-gray-300 font-medium">Title</TableCell>
+                <TableCell className="text-gray-300 font-medium">Location</TableCell>
+                <TableCell className="text-gray-300 font-medium">Salary</TableCell>
+                <TableCell className="text-gray-300 font-medium">Actions</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {jobs.map((job) => (
+                <TableRow
+                  key={job.id}
+                  className="hover:bg-gray-700 text-gray-300"
+                >
+                  <TableCell className="whitespace-nowrap">{job.title}</TableCell>
+                  <TableCell className="whitespace-nowrap">{job.location}</TableCell>
+                  <TableCell className="whitespace-nowrap">{job.salary}</TableCell>
+                  <TableCell>
+                    <IconButton
+                      color="secondary"
+                      onClick={() => navigate(`/edit-job/${job.id}`)}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      color="error"
+                      onClick={() => handleDelete(job.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     </div>
   );
 };
