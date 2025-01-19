@@ -90,7 +90,7 @@ export default function add(){
                         <div className="mb-5">
                             <label htmlFor="salary"
                                    className="block mb-2 text-sm font-medium text-gray-900 ">Salary</label>
-                            <input type="text" id="salary" name="salary" onChange={handleChange}
+                            <input type="number" id="salary" name="salary" onChange={handleChange}
                                    className=" border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "/>
                         </div>
                         <Button variant="contained" onClick={handleSubmit} color="success" className="w-[90px] h-[40px]">

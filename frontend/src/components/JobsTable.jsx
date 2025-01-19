@@ -33,8 +33,8 @@ export default function JobsTable() {
     }
     return (
         <>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} size="large" aria-label="a dense table">
+            <TableContainer component={Paper} className="w-[500px] sm:w-full">
+                <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
@@ -54,15 +54,16 @@ export default function JobsTable() {
                                 <TableCell align="left">{job.location}</TableCell>
                                 <TableCell align="left">{job.salary}</TableCell>
                                 <TableCell align="left">
-                                    <Link href={`/edit/${job.id}`} >
-                                        <Button className="bg-green-400 w-[90px]" variant="contained" >
-                                            Update
+                                    <div className="flex flex-col items-start justify-center gap-y-3 sm:flex-row">
+                                        <Link href={`/edit/${job.id}`} >
+                                            <Button className="bg-green-400 w-[90px]" variant="contained" >
+                                                Update
+                                            </Button>
+                                        </Link>
+                                        <Button onClick={()=> handleDelete(job.id)} className="sm:ml-3 bg-red-400 w-[90px]" variant="contained" >
+                                            Delete
                                         </Button>
-                                    </Link>
-                                    
-                                    <Button onClick={()=> handleDelete(job.id)} className="ml-3 bg-red-400 w-[90px]" variant="contained" >
-                                        Delete
-                                    </Button>
+                                    </div>
                                 </TableCell>
 
                             </TableRow>
