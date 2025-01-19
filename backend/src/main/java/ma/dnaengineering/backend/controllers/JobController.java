@@ -1,6 +1,8 @@
 package ma.dnaengineering.backend.controllers;
 
 import jakarta.validation.Valid;
+import ma.dnaengineering.backend.dtos.AddJobDto;
+import ma.dnaengineering.backend.dtos.UpdateJobDto;
 import ma.dnaengineering.backend.interfaces.IJobService;
 import ma.dnaengineering.backend.models.Job;
 import org.springframework.http.HttpStatus;
@@ -29,19 +31,33 @@ public class JobController {
         Job Job = _JobService.GetJobById(id);
         return new ResponseEntity<>(Job, HttpStatus.OK);
     }
+    
     @PostMapping
-    public ResponseEntity<Job> addJob(@Valid @RequestBody Job Job) {
-        Job newJob = _JobService.AddJob(Job);
-        return new ResponseEntity<>(newJob, HttpStatus.CREATED);
+    public ResponseEntity<Job> addJob(@Valid @RequestBody AddJobDto addJobDto) {
+        Job newJob = new Job();
+        newJob.setTitle(addJobDto.getTitle());
+        newJob.setDescription(addJobDto.getDescription());
+        newJob.setLocation(addJobDto.getLocation());
+        newJob.setSalary(addJobDto.getSalary());
+        Job createdJob = _JobService.AddJob(newJob);
+        return new ResponseEntity<>(createdJob, HttpStatus.CREATED);
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody Job JobUpdate) {
-        Job updatedJob = _JobService.UpdateJob(id, JobUpdate);
-        return new ResponseEntity<>(updatedJob, HttpStatus.OK);
+    public ResponseEntity<Job> updateJob(@PathVariable Long id, @Valid @RequestBody UpdateJobDto updateJobDto) {
+        Job existingJob = _JobService.GetJobById(id);
+        existingJob.setTitle(updateJobDto.getTitle());
+        existingJob.setDescription(updateJobDto.getDescription());
+        existingJob.setLocation(updateJobDto.getLocation());
+        existingJob.setSalary(updateJobDto.getSalary());
+        Job updatedJob = _JobService.UpdateJob(id, existingJob);
+        return ResponseEntity.ok(updatedJob);
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteJob(@PathVariable Long id) {
+    public ResponseEntity<Job> deleteJob(@PathVariable Long id) {
+        Job deletedJob = _JobService.GetJobById(id);
         _JobService.DeleteJob(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(deletedJob);
     }
 }
