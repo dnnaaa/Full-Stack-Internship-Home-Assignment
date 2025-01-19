@@ -53,6 +53,7 @@ const JobList = () => {
             variant="contained"
             color="primary"
             onClick={() => navigate('/add-job')}
+            startIcon={<AddIcon />} // Add the icon here
           >
             Add Job
           </Button>
