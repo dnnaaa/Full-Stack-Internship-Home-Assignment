@@ -78,3 +78,6 @@
     @apply text-blue-600;
   }
 }
+body {
+  font-family: 'Roboto', sans-serif;
+}
