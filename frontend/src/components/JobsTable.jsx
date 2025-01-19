@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import {deleteJob, getJobs} from "@/service/service";
 import {useEffect, useState} from "react";
 import NotificationModal from "@components/NotificationModal";
+import Link from "next/link";
 
 
 export default function JobsTable() {
@@ -53,11 +54,13 @@ export default function JobsTable() {
                                 <TableCell align="left">{job.location}</TableCell>
                                 <TableCell align="left">{job.salary}</TableCell>
                                 <TableCell align="left">
-                                    <Button className="bg-green-400 w-[90px] mb-3" variant="contained" >
-                                        Update
-                                    </Button>
-                                    <br/>
-                                    <Button onClick={()=> handleDelete(job.id)} className="bg-red-400 w-[90px]" variant="contained" >
+                                    <Link href={`/edit/${job.id}`} >
+                                        <Button className="bg-green-400 w-[90px]" variant="contained" >
+                                            Update
+                                        </Button>
+                                    </Link>
+                                    
+                                    <Button onClick={()=> handleDelete(job.id)} className="ml-3 bg-red-400 w-[90px]" variant="contained" >
                                         Delete
                                     </Button>
                                 </TableCell>
