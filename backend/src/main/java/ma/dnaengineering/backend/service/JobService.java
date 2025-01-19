@@ -14,7 +14,7 @@ public interface JobService {
     List<Job> getAllJobs();
 
     // Fetch a job by its ID
-    Optional<Job> getJobById(Long id);
+    Job getJobById(Long id);
 
     // Update an existing job
     Job updateJob(Long id, Job job);
