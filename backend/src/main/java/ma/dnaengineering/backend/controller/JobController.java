@@ -1,16 +1,21 @@
 package ma.dnaengineering.backend.controller;
 
+import jakarta.validation.Valid;
+import ma.dnaengineering.backend.exception.JobNotFoundException;
+import ma.dnaengineering.backend.exception.NegativeSalaryException;
 import ma.dnaengineering.backend.model.Job;
 import ma.dnaengineering.backend.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobs")
+@Validated
 public class JobController {
 
     @Autowired
@@ -19,7 +24,7 @@ public class JobController {
 
     // Create a new job
     @PostMapping
-    public ResponseEntity<Job> createJob(@RequestBody Job job) {
+    public ResponseEntity<Job> createJob(@Valid @RequestBody Job job) {
         Job createdJob = jobService.createJob(job);
         return new ResponseEntity<>(createdJob, HttpStatus.CREATED);
     }
@@ -37,7 +42,7 @@ public class JobController {
         try {
             Job job = jobService.getJobById(id);
             return new ResponseEntity<>(job, HttpStatus.OK);
-        } catch (RuntimeException e) {
+        } catch (JobNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -45,11 +50,11 @@ public class JobController {
 
     // Update a job by ID
     @PutMapping("/{id}")
-    public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody Job job) {
+    public ResponseEntity<Job> updateJob(@PathVariable Long id, @Valid @RequestBody Job job) {
         try {
             Job updatedJob = jobService.updateJob(id, job);
             return new ResponseEntity<>(updatedJob, HttpStatus.OK);
-        } catch (RuntimeException e) {
+        } catch (JobNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -60,7 +65,7 @@ public class JobController {
         try {
             jobService.deleteJob(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
+        } catch (JobNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
