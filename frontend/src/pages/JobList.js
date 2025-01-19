@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { getJobs, deleteJob } from '../services/jobService';
 import { useNavigate } from 'react-router-dom';
-import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import {
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
@@ -30,34 +39,54 @@ const JobList = () => {
   };
 
   return (
-    <div>
-      <h1>Job Management</h1>
-      <Button variant="contained" onClick={() => navigate('/add-job')}>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold text-gray-300 mb-6">Job Management</h1>
+      <Button
+        variant="contained"
+        color="primary"
+        className="mb-4"
+        onClick={() => navigate('/add-job')}
+      >
         Add Job
       </Button>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Location</TableCell>
-            <TableCell>Salary</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {jobs.map((job) => (
-            <TableRow key={job.id}>
-              <TableCell>{job.title}</TableCell>
-              <TableCell>{job.location}</TableCell>
-              <TableCell>{job.salary}</TableCell>
-              <TableCell>
-                <Button onClick={() => navigate(`/edit-job/${job.id}`)}>Edit</Button>
-                <Button onClick={() => handleDelete(job.id)}>Delete</Button>
-              </TableCell>
+      <TableContainer component={Paper} className="shadow-lg bg-gray-800">
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell className="text-gray-300">Title</TableCell>
+              <TableCell className="text-gray-300">Location</TableCell>
+              <TableCell className="text-gray-300">Salary</TableCell>
+              <TableCell className="text-gray-300">Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {jobs.map((job) => (
+              <TableRow key={job.id} className="hover:bg-gray-700">
+                <TableCell>{job.title}</TableCell>
+                <TableCell>{job.location}</TableCell>
+                <TableCell>{job.salary}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    className="mr-2"
+                    onClick={() => navigate(`/edit-job/${job.id}`)}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleDelete(job.id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };
