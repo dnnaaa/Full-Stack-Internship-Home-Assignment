@@ -42,6 +42,9 @@ public class JobServiceImpl implements JobService {
             if (job.getDescription()!=null){
                 modifiedJob.setDescription(job.getDescription());
             }
+            if (job.getLocation()!=null){
+                modifiedJob.setLocation(job.getLocation());
+            }
             if (job.getSalary()!=null){
                 modifiedJob.setSalary(job.getSalary());
             }

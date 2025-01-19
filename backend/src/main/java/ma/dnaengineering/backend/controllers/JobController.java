@@ -45,7 +45,9 @@ public class JobController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateJob(@PathVariable("id") Long id, @RequestBody Job job){
-        return new ResponseEntity<>(HttpStatus.OK);
+        System.out.println(job);
+        Job updatedJob = jobService.updateJob(id, job);
+        return new ResponseEntity<>(updatedJob, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
