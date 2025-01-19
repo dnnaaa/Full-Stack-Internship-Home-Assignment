@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8484/api/jobs'; 
+const API_URL = 'http://localhost:8484/api/jobs';
+
 export const getJobs = () => {
-  return axios.get(API_URL);
+  return axios.get(API_URL );
 };
 
 export const getJobById = (id) => {

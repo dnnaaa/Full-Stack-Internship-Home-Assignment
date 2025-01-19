@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getJobs, deleteJob } from '../services/jobService.js';
+import { getJobs, deleteJob } from '../services/jobService';
 import { useNavigate } from 'react-router-dom';
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
