@@ -2,6 +2,7 @@
 import JobsTable from "@components/JobsTable";
 import Button from '@mui/material/Button';
 import {useEffect, useState} from "react";
+import Link from "next/link";
 export default function HomePage() {
     const [jobs,setJobs]=useState([])
     useEffect(() => {
@@ -12,9 +13,11 @@ export default function HomePage() {
           <div>
               <div className="flex items-center justify-between">
                   <h1>Jobs List</h1>
-                  <Button variant="contained" color="success">
-                      Add Job
-                  </Button>
+                      <Link href="add" >
+                          <Button variant="contained" color="success">
+                                Add Job
+                          </Button>
+                          </Link>
               </div>
               <JobsTable jobs={jobs}/>
           </div>

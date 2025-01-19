@@ -19,7 +19,7 @@ export default function JobsTable({jobs}) {
                         <TableCell align="left">Title</TableCell>
                         <TableCell align="left">Location </TableCell>
                         <TableCell align="left">Salary</TableCell>
-                        <TableCell align="right">Action</TableCell>
+                        <TableCell align="left">Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
