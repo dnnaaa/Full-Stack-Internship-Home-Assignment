@@ -2,6 +2,7 @@
 import Button from "@mui/material/Button";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
+import {postJob} from "@/service/service";
 
 
 export default function add(){
@@ -28,14 +29,11 @@ export default function add(){
             ...prevErrors,
             [name]: '',
         }));
-
-        console.log(errors)
     };
 
     const  handleSubmit  =async (event) => {
         event.preventDefault();
         const newErrors = {};
-
 
         if (!formData.title.trim()) {
             newErrors.title = 'Title is required.';
@@ -49,24 +47,8 @@ export default function add(){
             setErrors(newErrors);
         }
         else{
-            try {
-                const response = await fetch('http://localhost:8080/jobs', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const result = await response.json();
-                await router.push('/');
-            } catch (error) {
-                console.error('Error posting data:', error);
-            }
+            await postJob(formData)
+            await router.push('/');
         }
     };
 
