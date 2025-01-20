@@ -1,8 +1,8 @@
 // App.jsx
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Styles nécessaires pour React Toastify
-import JobListPage from "./pages/JobListPage"; // Importer votre page de liste de jobs
+import "react-toastify/dist/ReactToastify.css"; 
+import JobListPage from "./pages/JobListPage"; 
 
 function App() {
   return (
