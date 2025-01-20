@@ -1,4 +1,4 @@
-import AddForm from '@/ui/job/AddForm'
+import AddForm from '@/ui/job/addForm'
 import React from 'react'
 
 const page = () => {
