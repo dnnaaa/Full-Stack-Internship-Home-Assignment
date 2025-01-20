@@ -71,9 +71,8 @@ const AddEditJob = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="p-8 md:max-w-2xl w-full bg-gray-800 rounded-lg shadow-lg">
+      <div className="p-8 md:max-w-2xl w-full bg-gray-800 rounded-3xl shadow-lg">
         <h1 className="text-3xl font-bold text-gray-300 mb-6">{jobId ? 'Edit Job' : 'Add Job'}</h1>
-        
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
@@ -84,16 +83,19 @@ const AddEditJob = () => {
               required
             />
             <Input
+              label="Location"
+              value={job.location}
+              onChange={handleInputChange('location')}
+            />
+            <Input
               label="Description *"
               value={job.description}
               onChange={handleInputChange('description')}
               error={errors.description}
               required
-            />
-            <Input
-              label="Location"
-              value={job.location}
-              onChange={handleInputChange('location')}
+              multiline
+              rows={4}
+              className="col-span-1 md:col-span-2" 
             />
             <Input
               label="Salary"
@@ -104,10 +106,17 @@ const AddEditJob = () => {
             />
           </div>
           <div className="flex mt-8 justify-end space-x-4">
-            <Button type="submit" disabled={Object.keys(errors).length > 0}>
+            <Button 
+            type="submit" 
+            disabled={Object.keys(errors).length > 0}
+            sx={{ borderRadius: '25px' }}
+            >
               Save
             </Button>
-            <Button onClick={handleBack}>
+            <Button 
+            onClick={handleBack}
+            sx={{ borderRadius: '25px' }}
+            >
               Back
             </Button>
           </div>
