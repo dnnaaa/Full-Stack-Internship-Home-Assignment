@@ -93,6 +93,7 @@ const JobListPage = () => {
             initialJob={selectedJob} 
             onSubmit={handleJobSubmit}
             onCancel={() => setIsModalOpen(false)} 
+            isEditing={!!selectedJob}
           />
         </Modal>
       )}

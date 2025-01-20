@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const JobForm = ({ initialJob, onSubmit, onCancel }) => {
+const JobForm = ({ initialJob, onSubmit, onCancel ,isEditing = false}) => {
   const [job, setJob] = useState(
     initialJob || { title: "", location: "", salary: "", description: "" }
   );
@@ -33,7 +33,7 @@ const JobForm = ({ initialJob, onSubmit, onCancel }) => {
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md max-w-lg mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Create new job</h2>
+      <h2 className="text-2xl font-bold mb-6">{isEditing ? 'Update Job' : 'Create New Job'}</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -99,7 +99,8 @@ const JobForm = ({ initialJob, onSubmit, onCancel }) => {
             type="submit"
             className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
           >
-            Add
+            {isEditing ? 'Save' : 'Add'}
+
           </button>
         </div>
       </form>
