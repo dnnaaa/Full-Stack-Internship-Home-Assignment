@@ -7,23 +7,35 @@ import { toast } from "react-toastify";
 
 export default function AddJobPage() {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    location: "",
-    salary: "",
+    title: null,
+    description: null,
+    location: null,
+    salary: null,
   });
+
   const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value || null }); 
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addJob(formData);
-    router.push("/jobs");
-    toast.success("Added")
+
+    if (!formData.title || !formData.description) {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    try {
+      await addJob(formData);
+      toast.success("Job added successfully!");
+      router.push("/jobs");
+    } catch (error) {
+      console.error("Error adding job:", error);
+      toast.error("An error occurred while adding the job.");
+    }
   };
 
   return (
@@ -40,6 +52,7 @@ export default function AddJobPage() {
               placeholder="Job Title"
               value={formData.title}
               onChange={handleChange}
+              required
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
@@ -52,6 +65,7 @@ export default function AddJobPage() {
               placeholder="Job Description"
               value={formData.description}
               onChange={handleChange}
+              required
               rows={4}
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
@@ -66,6 +80,7 @@ export default function AddJobPage() {
               placeholder="Location"
               value={formData.location}
               onChange={handleChange}
+              required
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
@@ -79,6 +94,7 @@ export default function AddJobPage() {
               placeholder="Salary"
               value={formData.salary}
               onChange={handleChange}
+              required
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>

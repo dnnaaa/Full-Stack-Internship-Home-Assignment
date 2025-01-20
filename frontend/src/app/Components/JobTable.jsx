@@ -11,6 +11,8 @@ import Paper from '@mui/material/Paper';
 import { Button, responsiveFontSizes } from '@mui/material';  
 import { useRouter, useSearchParams } from "next/navigation";
 import { deleteJob, fetchJobs } from "../Utils/api";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function DenseTable() {
@@ -30,8 +32,9 @@ export default function DenseTable() {
 
 
   const handleDelete = (id)=>{
-        deleteJob(id);
-        toast.success("Deleted")
+        deleteJob(id).then(
+          toast.error("Deleted")
+        );
         
   }
 
