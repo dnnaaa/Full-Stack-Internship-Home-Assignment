@@ -27,11 +27,16 @@ public class JobController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Job> getJob(@PathVariable Long id) {
-        Job Job = _JobService.GetJobById(id);
-        return new ResponseEntity<>(Job, HttpStatus.OK);
+    public ResponseEntity<?> getJob(@PathVariable Long id) {
+        System.out.println("Received ID: " + id);
+        try {
+            Job job = _JobService.GetJobById(id);
+            return ResponseEntity.ok(job);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
-    
+
     @PostMapping
     public ResponseEntity<Job> addJob(@Valid @RequestBody AddJobDto addJobDto) {
         Job newJob = new Job();

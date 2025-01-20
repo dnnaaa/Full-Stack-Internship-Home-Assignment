@@ -23,7 +23,7 @@ public class JobService implements IJobService {
 
     @Override
     public Job GetJobById(Long Id) {
-        return _jobRepository.findById(Id).orElseThrow();
+        return _jobRepository.findById(Id).orElseThrow(() -> new RuntimeException("Job not found"));
     }
 
     @Override

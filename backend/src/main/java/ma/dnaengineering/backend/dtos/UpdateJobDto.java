@@ -18,7 +18,6 @@ public class UpdateJobDto {
     @Positive(message = "Salary must be a positive number")
     private BigDecimal salary;
 
-    // Getters and Setters
     public String getTitle() {
         return title;
     }

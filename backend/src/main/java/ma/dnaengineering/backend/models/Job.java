@@ -9,24 +9,21 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
+@Table(name = "job")
 public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @NotNull(message = "Title is required")
     @Column(nullable = false)
     private String title;
 
-    @NotNull(message = "Description is required")
     @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
