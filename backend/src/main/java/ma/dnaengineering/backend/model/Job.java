@@ -33,6 +33,7 @@ public class Job {
 
     private String location;
 
+    @NotNull
     @Min(value = 0, message = "Salary must be non-negative")
     private BigDecimal salary;
 

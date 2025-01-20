@@ -5,6 +5,8 @@ import ma.dnaengineering.backend.exception.NegativeSalaryException;
 import ma.dnaengineering.backend.model.Job;
 import ma.dnaengineering.backend.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,9 @@ public class JobServiceImpl implements JobService {
         }
         return jobRepository.save(job);
     }
-
+    public Page<Job> getJobsByPage(Pageable pageable) {
+        return jobRepository.findAll(pageable);
+    }
 
 
     @Override

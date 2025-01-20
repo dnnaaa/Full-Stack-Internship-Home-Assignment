@@ -6,6 +6,9 @@ import ma.dnaengineering.backend.exception.NegativeSalaryException;
 import ma.dnaengineering.backend.model.Job;
 import ma.dnaengineering.backend.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -28,12 +31,16 @@ public class JobController {
         Job createdJob = jobService.createJob(job);
         return new ResponseEntity<>(createdJob, HttpStatus.CREATED);
     }
-
     // Fetch all jobs
-    @GetMapping
+    @GetMapping("/All")
     public ResponseEntity<List<Job>> getAllJobs() {
         List<Job> jobs = jobService.getAllJobs();
         return new ResponseEntity<>(jobs, HttpStatus.OK);
+    }
+    //Fetch jobs by page
+    @GetMapping
+    public Page<Job> getJobs(@PageableDefault(size = 5, sort = "title") Pageable pageable) {
+        return jobService.getJobsByPage(pageable);
     }
 
     // Fetch a job by ID
