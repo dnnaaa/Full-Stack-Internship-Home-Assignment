@@ -14,7 +14,9 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import AddIcon from '@mui/icons-material/Add'; 
+import AddIcon from '@mui/icons-material/Add';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import PublicIcon from '@mui/icons-material/Public'; 
 import Pagination from '@mui/material/Pagination';
 
 const JobList = () => {
@@ -162,9 +164,21 @@ const JobList = () => {
                   key={job.id}
                   className="hover:bg-gray-700 text-gray-300"
                 >
-                  <TableCell className="whitespace-nowrap">{job.title}</TableCell>
-                  <TableCell className="whitespace-nowrap">{job.location}</TableCell>
-                  <TableCell className="whitespace-nowrap">{job.salary}</TableCell>
+                  <TableCell className="whitespace-nowrap">
+                            {job.title}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <PublicIcon fontSize="small" /> {/* Globe Icon */}
+                      {job.location}
+                    </div>
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <AttachMoneyIcon fontSize="small" />
+                      {job.salary}
+                    </div>
+                  </TableCell>
                   <TableCell>
                     <IconButton
                       color="secondary"
