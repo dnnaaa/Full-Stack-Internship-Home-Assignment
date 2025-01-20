@@ -4,8 +4,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import darkTheme from './config/theme';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import JobList from './pages/JobList';
-import AddEditJob from './pages/AddEditJob';
+import JobList from './views/JobList';
+import AddEditJob from './views/AddEditJob';
 import Loader from './components/loader/loader'
 
 
