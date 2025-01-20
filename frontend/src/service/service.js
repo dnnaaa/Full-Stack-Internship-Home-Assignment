@@ -1,4 +1,4 @@
-const url = PROCESS.ENV.REACT_APP_API_URL || 'http://localhost:8080/api/jobs';
+const url = 'http://localhost:8080/api/jobs';
 
 export const getJobs = async () => {
     try {
