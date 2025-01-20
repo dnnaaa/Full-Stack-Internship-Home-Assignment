@@ -17,6 +17,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PublicIcon from '@mui/icons-material/Public'; 
+import WorkIcon from '@mui/icons-material/Work';
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import Pagination from '@mui/material/Pagination';
 
 const JobList = () => {
@@ -95,12 +97,13 @@ const JobList = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-gray-300">
             Job Management
           </h1>
-          {/* Toggle Button */}
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={toggleFetchMode}
             className="mb-4"
+            sx={{ borderRadius: '50px' }}
+            
           >
             {isFetchingAll ? 'Jobs by Pages' : 'All Jobs'}
           </Button>
@@ -152,10 +155,30 @@ const JobList = () => {
           <Table className="w-full">
             <TableHead>
               <TableRow>
-                <TableCell className="text-gray-300 font-medium">Title</TableCell>
-                <TableCell className="text-gray-300 font-medium">Location</TableCell>
-                <TableCell className="text-gray-300 font-medium">Salary</TableCell>
-                <TableCell className="text-gray-300 font-medium">Actions</TableCell>
+                <TableCell className="text-gray-300 font-medium">
+                  <div className="flex items-center gap-2">
+                    <UnfoldMoreIcon fontSize="small" />
+                    Title
+                  </div>
+                </TableCell>
+                <TableCell className="text-gray-300 font-medium">
+                  <div className="flex items-center gap-2">
+                      <UnfoldMoreIcon fontSize="small" />
+                      Location
+                  </div>
+                </TableCell>
+                <TableCell className="text-gray-300 font-medium">
+                  <div className="flex items-center gap-2">
+                      <UnfoldMoreIcon fontSize="small" />
+                      Salary
+                  </div> 
+                </TableCell>
+                <TableCell className="text-gray-300 font-medium">
+                  <div className="flex items-center gap-2">
+                      <UnfoldMoreIcon fontSize="small" />
+                      Actions
+                  </div> 
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -165,11 +188,14 @@ const JobList = () => {
                   className="hover:bg-gray-700 text-gray-300"
                 >
                   <TableCell className="whitespace-nowrap">
-                            {job.title}
+                    <div className="flex items-center gap-2">
+                      <WorkIcon fontSize="small" />
+                      {job.title}
+                    </div>
                   </TableCell>
                   <TableCell className="whitespace-nowrap">
                     <div className="flex items-center gap-2">
-                      <PublicIcon fontSize="small" /> {/* Globe Icon */}
+                      <PublicIcon fontSize="small" />
                       {job.location}
                     </div>
                   </TableCell>
