@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ma.dnaengineering.backend.services.JobService;
 
 import java.util.List;
-@CrossOrigin("http://localhost:5173/")
+@CrossOrigin(value = "*",methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/jobs")
 public class JobController {

@@ -6,12 +6,15 @@ import { StyledEngineProvider } from '@mui/material'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Jobs from './routes/Jobs.tsx'
 import Job from './routes/Job.tsx'
+import AppTheme from './theme/AppTheme.tsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <App />
+      <AppTheme>
+        <App />
+      </AppTheme>
     ),
     children: [
       {

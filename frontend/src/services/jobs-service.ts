@@ -17,7 +17,7 @@ export async function addJob(job:JobMutation):Promise<Job>{
 }
 
 export async function updateJob(job:JobMutation,id:number):Promise<Job>{
-    const response = await api.post(`/jobs/${id}`,job);
+    const response = await api.put(`/jobs/${id}`,job);
     return response.data;
 }
 
