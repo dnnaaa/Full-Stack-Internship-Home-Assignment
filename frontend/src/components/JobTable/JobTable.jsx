@@ -1,10 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './JobTable.css';
 
 const JobTable = ({ jobs, onEdit, onDelete }) => {
+  const handleEdit = (job) => {
+
+    onEdit(job);
+  };
+
+  const handleDelete = (id) => {
+    toast.error(`Job with ID ${id} deleted`, { position: "top-right"  ,autoClose:5000 });
+    onDelete(id);
+  };
+
   return (
     <div className="job-table-container">
+      <ToastContainer  autoClose={5000}/>
       <table className="job-table">
         <thead>
           <tr>
@@ -26,13 +39,13 @@ const JobTable = ({ jobs, onEdit, onDelete }) => {
                 <td>
                   <button
                     className="btn btn-update"
-                    onClick={() => onEdit(job)}
+                    onClick={() => handleEdit(job)}
                   >
                     Update
                   </button>
                   <button
                     className="btn btn-delete"
-                    onClick={() => onDelete(job.id)}
+                    onClick={() => handleDelete(job.id)}
                   >
                     Delete
                   </button>
@@ -61,7 +74,7 @@ JobTable.propTypes = {
       salary: PropTypes.number.isRequired,
     })
   ).isRequired,
-  onUpdate: PropTypes.func.isRequired, // Fonction pour gérer les mises à jour
+  onEdit: PropTypes.func.isRequired, // Fonction pour gérer les mises à jour
   onDelete: PropTypes.func.isRequired, // Fonction pour gérer les suppressions
 };
 

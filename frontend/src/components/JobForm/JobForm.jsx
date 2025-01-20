@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './JobForm.css';
 
 const JobForm = ({ onSubmit, initialData = {}, isEditing = false }) => {
@@ -10,18 +12,16 @@ const JobForm = ({ onSubmit, initialData = {}, isEditing = false }) => {
     salary: initialData.salary || '',
   });
 
-  const [errors, setErrors] = useState({}); // État pour les messages d'erreur
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Mise à jour des données
     setFormData((prevData) => ({
       ...prevData,
       [name]: name === 'salary' ? (value ? Number(value) : '') : value,
     }));
 
-    // Suppression de l'erreur pour ce champ
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: '',
@@ -56,11 +56,19 @@ const JobForm = ({ onSubmit, initialData = {}, isEditing = false }) => {
       return;
     }
 
+    // Notification Toast
+    if (isEditing) {
+      toast.success('Job updated successfully!', { position: "top-right", autoClose: 5000 });
+    } else {
+      toast.success('Job added successfully!', { position: "top-right", autoClose: 5000 });
+    }
+
     onSubmit(formData); // Soumission des données
   };
 
   return (
     <div className="job-form-container">
+      <ToastContainer autoClose={5000} />
       <h2>{isEditing ? 'Update Job' : 'Create New Job'}</h2>
       <form onSubmit={handleSubmit} className="job-form">
         <div className="form-row">
@@ -115,13 +123,11 @@ const JobForm = ({ onSubmit, initialData = {}, isEditing = false }) => {
               placeholder="Enter job salary"
             />
             {errors.salary && <p className="error-text">{errors.salary}</p>}
-           
           </div>
           <button type="submit" className="btn-add">
-               {isEditing ? 'Save' : 'Add'}
-            </button>
+            {isEditing ? 'Save' : 'Add'}
+          </button>
         </div>
-  
       </form>
     </div>
   );

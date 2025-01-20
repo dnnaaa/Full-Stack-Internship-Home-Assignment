@@ -2,15 +2,8 @@ import React from 'react'; // Import React
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import React Router
 import JobListPage from './pages/JobListPage'; // Import de la page JobListPage
 import JobFormPage from './pages/JobFormPage'; // Import de la page JobFormPage
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-ReactDOM.render(
-  <>
-    <ToastContainer />
-    <App />
-  </>,
-  document.getElementById('root')
-)
+
+
 
 const App = () => {
   return (
