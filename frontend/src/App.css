@@ -1,0 +1,100 @@
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Styles pour le tableau */
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles pour les en-têtes du tableau */
+.table-header {
+  background-color: #f3f4f6; 
+  font-weight: 600;
+  color: #374151; 
+}
+
+/* Styles pour les cellules du tableau */
+.table-cell {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb; 
+}
+
+/* Styles pour les boutons d'action */
+.action-button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.action-button.update {
+  background-color: #3b82f6; 
+  color: white;
+}
+
+.action-button.update:hover {
+  background-color: #2563eb; 
+}
+
+.action-button.delete {
+  background-color: #ef4444;
+  color: white;
+}
+
+.action-button.delete:hover {
+  background-color: #dc2626; 
+}
+
+
+.form-container {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db; 
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6; 
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); 
+}
+
+.form-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.form-button.save {
+  background-color: #10b981; 
+  color: white;
+}
+
+.form-button.save:hover {
+  background-color: #059669; 
+}
+
+.form-button.cancel {
+  background-color: #ef4444; 
+  color: white;
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+}
+
+.form-button.cancel:hover {
+  background-color: #ef4444; 
+  }
