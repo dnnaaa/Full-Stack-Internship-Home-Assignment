@@ -1,0 +1,40 @@
+.job-list-page {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.job-list-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.box h2 {
+    justify-content: flex-start;
+    margin-left: 120px;
+}
+
+.job-list-page .btn-add {
+    background-color: #ddeda1;
+    border: 2px solid rgb(98, 196, 1);
+    color: #000000;
+    padding: 5px 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    justify-content: flex-end;
+    margin-right: 120px;
+    height: fit-content;
+}
+
+.job-list-page .btn-add:hover {
+    background-color: #b7f37c;
+}

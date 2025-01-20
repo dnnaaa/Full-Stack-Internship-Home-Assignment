@@ -1,0 +1,52 @@
+/* Styles de base pour tous les boutons */
+
+.btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/* Variantes de styles */
+
+.btn-primary {
+    background-color: #ddeda1;
+    border: 2px solid rgb(98, 196, 1);
+}
+
+.btn-primary:hover {
+    background-color: rgb(98, 196, 1);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+
+/* Animation au clic */
+
+.btn:active {
+    transform: scale(0.95);
+}

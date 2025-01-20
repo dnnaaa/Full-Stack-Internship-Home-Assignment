@@ -1,0 +1,58 @@
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-Right: 13px;
+}
+
+.job-form-container {
+    width: 600px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.job-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group label {
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.form-row .btn-add {
+    padding: 10px 20px;
+    background-color: #ddeda1;
+    border: 2px solid rgb(98, 196, 1);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 120px;
+    align-self: flex-end;
+}
+
+.job-list-page .btn-add:hover {
+    background-color: #b7f37c;
+}
+
+.error-text {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
