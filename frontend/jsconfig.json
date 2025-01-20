@@ -2,24 +2,14 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@services/*": [
-        "src/services/*"
-      ],
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@app/*": ["src/app/*"],
+      "@services/*": ["src/services/*"]
     },
     "module": "commonjs",
     "target": "es6",
-    "jsx": "react",
+    "jsx": "react"
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
