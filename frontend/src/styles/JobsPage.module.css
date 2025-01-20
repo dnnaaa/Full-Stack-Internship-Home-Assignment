@@ -1,0 +1,57 @@
+
+.new-job-btn {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.container{
+    margin: 17px;
+}
+.job-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    margin: 40px auto;
+}
+
+/* Style pour les en-têtes du tableau */
+.job-table th {
+    padding: 10px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+/* Style pour les cellules du tableau */
+.job-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+.new-job-btn{
+    float:right;
+    padding: 7px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+}
+
+
+.action-btn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.update-btn {
+    background-color: green;
+    color: white;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+}
