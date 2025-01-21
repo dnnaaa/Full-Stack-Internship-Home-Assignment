@@ -1,15 +1,19 @@
-import {useState } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: (data?: AddJobDto) => void;
 }
+
 export interface AddJobDto {
   title: string;
   description: string;
   location: string;
   salary: number;
 }
+
 const AddJobModal = (props: ModalProps) => {
   const [FormsValues, setFormsValues] = useState<AddJobDto>({
     title: "",
@@ -19,6 +23,25 @@ const AddJobModal = (props: ModalProps) => {
   });
 
   if (!props.isOpen) return null;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Call onClose to pass the form data
+    props.onClose(FormsValues);
+
+    // Show success toast notification
+    toast.success("Job added successfully!");
+
+    // Optionally reset the form values after submitting
+    setFormsValues({
+      title: "",
+      description: "",
+      location: "",
+      salary: 0,
+    });
+  };
+
   return (
     <div
       onClick={(e) => props.onClose()}
@@ -39,7 +62,6 @@ const AddJobModal = (props: ModalProps) => {
               onClick={() => props.onClose()}
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-toggle="crud-modal"
             >
               <svg
                 className="w-3 h-3"
@@ -59,10 +81,7 @@ const AddJobModal = (props: ModalProps) => {
               <span className="sr-only">Close modal</span>
             </button>
           </div>
-          <form
-            onSubmit={(e) => props.onClose(FormsValues)}
-            className="p-4 md:p-5"
-          >
+          <form onSubmit={handleSubmit} className="p-4 md:p-5">
             <div className="grid gap-4 mb-4 grid-cols-12">
               <div className="col-span-6">
                 <label

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Job } from "../../helpers/declarations";
 import { GetJobById, UpdateJob } from "../../Services/JobService";
+import { toast } from "react-toastify"; 
 
 interface ModalProps {
   id: number;
@@ -24,7 +25,6 @@ const UpdateJobModal: React.FC<ModalProps> = ({ id, isOpen, onClose }) => {
     salary: 0,
   });
 
-  // Charger les détails du job à partir de l'ID
   useEffect(() => {
     if (id && isOpen) {
       const fetchJob = async () => {
@@ -41,13 +41,25 @@ const UpdateJobModal: React.FC<ModalProps> = ({ id, isOpen, onClose }) => {
           }
         } catch (error) {
           console.error("Error fetching job details:", error);
+          toast.error("Error fetching job details.");
         }
       };
       fetchJob();
     }
   }, [id, isOpen]);
 
-  // Ne pas afficher la modale si elle n'est pas ouverte
+  const handleUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await UpdateJob(id,formValues); 
+      toast.success("Job updated successfully!"); 
+      onClose(formValues); 
+    } catch (error) {
+      console.error("Error updating job:", error);
+      toast.error("Error updating job.");
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -68,12 +80,7 @@ const UpdateJobModal: React.FC<ModalProps> = ({ id, isOpen, onClose }) => {
             &times;
           </button>
         </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onClose(formValues); // Envoie les données mises à jour
-          }}
-        >
+        <form onSubmit={handleUpdate}>
           <div className="space-y-4">
             <div>
               <label

@@ -26,16 +26,17 @@ export const GetJobById = async (id: number): Promise<Job> => {
   return reponse.data;
 };
 
+
 export const UpdateJob = async (
-  updateJobDto: UpdateJobDto,
-  id: number
+  id: number,
+  updateJobDto: UpdateJobDto
 ): Promise<Job> => {
-  const reponse = await axios.put<Job>(
+  const response = await axios.put<Job>(
     `${apiBase}/api/jobs/${id}`,
     updateJobDto
   );
 
-  return reponse.data;
+  return response.data;
 };
 
 export const DeleteJob = async (id: number): Promise<Job> => {

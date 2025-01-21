@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Job } from "../../helpers/declarations";
 import UpdateJobModal, { UpdateJobDto } from "../UpdateJobModal/UpdateJobModal";
 import { DeleteJob, UpdateJob } from "../../Services/JobService";
+import { toast } from "react-toastify";
 
 interface Props {
   Jobs: Job[];
@@ -12,33 +13,51 @@ interface Props {
 const JobTable = (props: Props) => {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [jobToUpdate, setJobToUpdate] = useState<number>(0);
+
   const OpenModal = (id: number) => {
     setModalOpen(true);
-    setJobToUpdate(id);
+    setJobToUpdate(id); 
   };
+
   const CloseModal = async (updateJobDto?: UpdateJobDto) => {
     setModalOpen(false);
     if (updateJobDto) {
       console.log(updateJobDto);
       try {
-        const reponse = await UpdateJob(updateJobDto, jobToUpdate);
-        if (reponse) {
-          props.updateJob(reponse);
-        } else {
+        const response = await UpdateJob(jobToUpdate, updateJobDto); 
+        if (response) {
+          props.updateJob(response);
         }
-      } catch (error) {}
-    } else {
+      } catch (error) {
+        console.error("Error updating job:", error);
+      }
     }
   };
   const Delete = async (id: number) => {
+    const loadingToast = toast.loading("Deleting job..."); // Show loading toast
+  
     try {
-      const reponse = await DeleteJob(id);
-      if (reponse) {
-        props.deleteJob(id);
-      } else {
+      const response = await DeleteJob(id);
+      if (response) {
+        toast.update(loadingToast, {
+          render: "Job deleted successfully!",
+          type: "success",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        props.deleteJob(id); 
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.update(loadingToast, {
+        render: "Failed to delete job.",
+        type: "error", 
+        isLoading: false,
+        autoClose: 5000, 
+      });
+      console.error("Error deleting job:", error);
+    }
   };
+
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -75,17 +94,17 @@ const JobTable = (props: Props) => {
                   {Job.id}
                 </th>
                 <td className="px-6 py-4">{Job.title}</td>
-                <td className="px-6 py-4">${Job.location}</td>
+                <td className="px-6 py-4">{Job.location}</td>
                 <td className="px-6 py-4">{Job.salary}</td>
                 <td className="px-6 py-4">
                   <button
-                    onClick={(e) => OpenModal(Job.id)}
+                    onClick={() => OpenModal(Job.id)} 
                     className="bg-orange-500 hover:bg-yellow-700 text-white px-3 py-2 font-medium rounded"
                   >
                     Update
                   </button>
                   <button
-                    onClick={(e) => Delete(Job.id)}
+                    onClick={() => Delete(Job.id)} 
                     className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 font-medium rounded"
                   >
                     Delete
@@ -96,11 +115,12 @@ const JobTable = (props: Props) => {
           </tbody>
         </table>
       </div>
+
       <UpdateJobModal
         isOpen={isModalOpen}
-        id={0}
+        id={jobToUpdate}  
         onClose={CloseModal}
-      ></UpdateJobModal>
+      />
     </div>
   );
 };
