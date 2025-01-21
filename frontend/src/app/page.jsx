@@ -5,8 +5,6 @@ import JobTable from "@/components/JobTable";
 import Link from "next/link";
 import { Button, Container, CircularProgress, Typography } from "@mui/material";
 import { useSearchParams, useRouter } from "next/navigation";
-import {refreshReducer} from "next/dist/client/components/router-reducer/reducers/refresh-reducer";
-import {Router} from "next/router";
 
 const Page = () => {
     const searchParams = useSearchParams();
