@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react"
 import { getAllJobs, deleteJob as deleteJobApi } from "@/services/api/jobs.api"
+import { useErrorHandler } from "./useErrorHandler"
 
 export function useJobs() {
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    fetchJobs()
-  }, [])
+  const { error, handleError, clearError } = useErrorHandler()
 
   const fetchJobs = async () => {
     try {
@@ -16,21 +13,24 @@ export function useJobs() {
       const data = await getAllJobs()
       setJobs(data)
     } catch (err) {
-      setError("Failed to fetch jobs")
+      handleError(err)
     } finally {
       setLoading(false)
     }
   }
 
-  const deleteJob = async (id) => {
+  const handleDelete = async (id) => {
     try {
       await deleteJobApi(id)
       setJobs(jobs.filter((job) => job.id !== id))
     } catch (err) {
-      setError("Failed to delete job")
+      handleError(err)
     }
   }
 
-  return { jobs, loading, error, deleteJob, refetch: fetchJobs }
-}
+  useEffect(() => {
+    fetchJobs()
+  }, [])
 
+  return { jobs, loading, error, handleDelete, refetch: fetchJobs, clearError }
+}
