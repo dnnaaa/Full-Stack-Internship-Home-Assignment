@@ -12,7 +12,7 @@ const Input = ({ label, value, onChange, className, type = 'text', required = fa
         required={required}
         fullWidth
         variant="outlined"
-        className="bg-gray-700 text-gray-300 rounded"
+        className="bg-blue-950 text-gray-300 rounded"
         error={!!error}
         helperText={error}
         InputLabelProps={{

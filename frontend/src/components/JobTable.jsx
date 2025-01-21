@@ -22,10 +22,10 @@ const JobTable = ({ jobs, handleDelete }) => {
   return (
     <TableContainer
       component={Paper}
-      className="shadow-lg bg-gray-800 overflow-hidden"
+      className="shadow-lg overflow-hidden"
       sx={{ borderRadius: '25px' }}
     >
-      <Table>
+      <Table className="bg-blue-900">
         <TableHead>
           <TableRow>
             <TableCell className="text-gray-300 font-medium">Title</TableCell>
@@ -36,7 +36,7 @@ const JobTable = ({ jobs, handleDelete }) => {
         </TableHead>
         <TableBody>
           {jobs.map((job) => (
-            <TableRow key={job.id} className="hover:bg-gray-700 text-gray-300">
+            <TableRow key={job.id} className="hover:bg-blue-500 text-gray-300">
               <TableCell>
                 <div className="flex items-center gap-2">
                   <WorkIcon fontSize="small" />

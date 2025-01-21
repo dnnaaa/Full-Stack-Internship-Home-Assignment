@@ -8,7 +8,7 @@ const Header = ({ isFetchingAll, toggleFetchMode }) => {
   const navigate = useNavigate();
   return (
     <div className="flex justify-between items-center mb-4">
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-300">
+      <h1 className="text-2xl md:text-3xl font-bold text-white">
         Job Management
       </h1>
       <Button

@@ -1,77 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { getJobById, createJob, updateJob } from '../services/jobService';
+import useAddEditJob from '../hooks/useAddEditJob'
 import Button from '../components/Button';
 import Input from '../components/Input';
+import SuccessModal from '../components/Modal/SuccessModal';
 
 const AddEditJob = () => {
-  const [job, setJob] = useState({ title: '', description: '', location: '', salary: '' });
-  const [errors, setErrors] = useState({});
-  const { id: idParam } = useParams();
-  const navigate = useNavigate();
-  const jobId = idParam ? parseInt(idParam, 10) : undefined;
-
-  useEffect(() => {
-    if (jobId) {
-      const fetchJob = async () => {
-        try {
-          const response = await getJobById(jobId);
-          setJob(response.data);
-        } catch (error) {
-          console.error('Failed to fetch job:', error);
-        }
-      };
-      fetchJob();
-    }
-  }, [jobId]);
-
-  const validate = () => {
-    let errors = {};
-    if (!job.title) errors.title = 'Title is required.';
-    if (!job.description) errors.description = 'Description is required.';
-    if (job.salary < 0 || !job.salary) errors.salary = 'Salary is required and cannot be negative.';
-    return errors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    try {
-      if (jobId) {
-        await updateJob(jobId, job);
-      } else {
-        await createJob(job);
-      }
-      navigate('/');
-    } catch (error) {
-      console.error('Failed to save job:', error);
-    }
-  };
-
-  const handleInputChange = (field) => (e) => {
-    setJob({ ...job, [field]: e.target.value });
-    setErrors((prevErrors) => {
-      if (prevErrors[field]) {
-        const newErrors = { ...prevErrors };
-        delete newErrors[field];
-        return newErrors;
-      }
-      return prevErrors;
-    });
-  };
-
-  const handleBack = () => {
-    navigate('/');
-  };
+  const {
+    job,
+    errors,
+    jobId,
+    handleSubmit,
+    handleInputChange,
+    handleBack,
+    openSuccessModal,
+    successMessage,
+    handleModalClose
+  } = useAddEditJob();
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="p-8 md:max-w-2xl w-full bg-gray-800 rounded-3xl shadow-lg">
+    <div className="flex items-center justify-center min-h-screen bg-blue-950">
+      <div className="p-8 md:max-w-2xl w-full bg-blue-900 rounded-3xl shadow-lg">
         <h1 className="text-3xl font-bold text-gray-300 mb-6">{jobId ? 'Edit Job' : 'Add Job'}</h1>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -121,6 +68,12 @@ const AddEditJob = () => {
             </Button>
           </div>
         </form>
+        <SuccessModal
+          open={openSuccessModal}
+          title="Success"
+          message={successMessage}
+          onClose={handleModalClose}
+        />
       </div>
     </div>
   );
