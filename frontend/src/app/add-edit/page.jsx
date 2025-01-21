@@ -121,6 +121,7 @@ export default function AddEditJobPage() {
                                     label="Title *"
                                     name="title"
                                     value={jobData.title}
+                                    placeholder="e.g. Senior Software Engineer"
                                     onChange={handleChange}
                                     error={!!errors.title}
                                     helperText={errors.title}
@@ -132,6 +133,7 @@ export default function AddEditJobPage() {
                                     label="Location (optional)"
                                     name="location"
                                     value={jobData.location}
+                                    placeholder="e.g., London, UK"
                                     onChange={handleChange}
                                     />
                                 </div>
@@ -142,6 +144,7 @@ export default function AddEditJobPage() {
                                 label="Description *"
                                 name="description"
                                 value={jobData.description}
+                                placeholder="Write a brief description of the job role, including key responsibilities and requirements."
                                 onChange={handleChange}
                                 multiline
                                 rows={4}
@@ -155,6 +158,7 @@ export default function AddEditJobPage() {
                                 label="Salary (optional)"
                                 name="salary"
                                 value={jobData.salary}
+                                placeholder="e.g., 950000"
                                 onChange={handleChange}
                                 type="number"
                                 error={!!errors.salary}   
