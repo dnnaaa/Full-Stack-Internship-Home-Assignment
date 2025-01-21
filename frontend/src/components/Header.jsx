@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material'; // Import Button and IconButton components
 import { useNavigate } from 'react-router-dom'; // Hook for navigation
 import AddIcon from '@mui/icons-material/Add'; // Icon for the Add Job button
-import ViewListIcon from '@mui/icons-material/ViewList';
-import GridViewIcon from '@mui/icons-material/GridView';
+import ViewListIcon from '@mui/icons-material/ViewList'; // Icon for the View List button
+import GridViewIcon from '@mui/icons-material/GridView'; // Icon for the Grid View button
+import { useTheme, useMediaQuery } from '@mui/material'; // Hooks for responsive behavior
 
 /**
  * Header Component
@@ -14,6 +15,8 @@ import GridViewIcon from '@mui/icons-material/GridView';
  */
 const Header = ({ isFetchingAll, toggleFetchMode }) => {
   const navigate = useNavigate(); // Hook for navigation
+  const theme = useTheme(); // Access the theme for responsive breakpoints
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm')); // Check if the screen size is small
 
   return (
     <div className="flex justify-between items-center mb-4">
@@ -23,27 +26,49 @@ const Header = ({ isFetchingAll, toggleFetchMode }) => {
       </h1>
 
       {/* Toggle Fetch Mode Button */}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={toggleFetchMode} // Calls the toggle function
-        className="mb-4"
-        sx={{ borderRadius: '50px' }} // Rounded button
-        startIcon={isFetchingAll ? <GridViewIcon /> : <ViewListIcon />}
-      >
-        {isFetchingAll ? 'Jobs by Pages' : 'All Jobs'} {/* Dynamic button text */}
-      </Button>
+      {isSmallScreen ? (
+        // Icon-only button for small screens
+        <IconButton
+          color="primary"
+          onClick={toggleFetchMode} // Calls the toggle function
+        >
+          {isFetchingAll ? <GridViewIcon /> : <ViewListIcon />} {/* Dynamic icon */}
+        </IconButton>
+      ) : (
+        // Full button for larger screens
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={toggleFetchMode} // Calls the toggle function
+          className="mb-4"
+          sx={{ borderRadius: '50px' }} // Rounded button
+          startIcon={isFetchingAll ? <GridViewIcon /> : <ViewListIcon />} // Adds dynamic icon
+        >
+          {isFetchingAll ? 'Jobs by Pages' : 'All Jobs'} {/* Dynamic button text */}
+        </Button>
+      )}
 
       {/* Add Job Button */}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => navigate('/add-job')} // Navigates to the Add Job page
-        startIcon={<AddIcon />} // Adds an icon to the button
-        sx={{ borderRadius: '50px' }} // Rounded button
-      >
-        Add Job
-      </Button>
+      {isSmallScreen ? (
+        // Icon-only button for small screens
+        <IconButton
+          color="primary"
+          onClick={() => navigate('/add-job')} // Navigates to the Add Job page
+        >
+          <AddIcon /> {/* Add Job icon */}
+        </IconButton>
+      ) : (
+        // Full button for larger screens
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate('/add-job')} // Navigates to the Add Job page
+          startIcon={<AddIcon />} // Adds an icon to the button
+          sx={{ borderRadius: '50px' }} // Rounded button
+        >
+          Add Job
+        </Button>
+      )}
     </div>
   );
 };

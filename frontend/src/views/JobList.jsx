@@ -5,7 +5,8 @@ import SortButtons from '../components/SortButtons'; // Component for sorting op
 import JobTable from '../components/JobTable'; // Component for displaying the job table
 import PaginationComponent from '../components/PaginationComponent'; // Component for pagination
 import ConfirmationModal from '../components/Modal/ConfirmationModal'; // Modal for delete confirmation
-import TableEmpty from '../components/TableEmpty'; // Component for the table if its empty
+import SalaryFilter from '../components/SalaryFilter';
+
 
 /**
  * JobList component for displaying a list of jobs.
@@ -26,6 +27,7 @@ const JobList = () => {
     handleDeleteConfirm, // Function to confirm job deletion
     openDeleteModal, // Function to open the delete confirmation modal
     closeDeleteModal, // Function to close the delete confirmation modal
+    handleSalaryFilter
   } = useJobList();
 
   return (
@@ -36,7 +38,6 @@ const JobList = () => {
           isFetchingAll={isFetchingAll}
           toggleFetchMode={toggleFetchMode}
         />
-
         {/* Delete confirmation modal */}
         <ConfirmationModal
           open={isDeleteModalOpen} // Control modal visibility
@@ -45,24 +46,23 @@ const JobList = () => {
           onConfirm={handleDeleteConfirm} // Confirm action
           onCancel={closeDeleteModal} // Cancel action
         />
-
         {/* Sorting buttons (visible only in paginated mode) */}
-        {!isFetchingAll && (
-          <SortButtons
-            sort={sort}
-            handleSortChange={handleSortChange}
-          />
-        )}
-
+        
+        <div className="mb-4 flex flex-wrap gap-4 items-center justify-between">
+          {!isFetchingAll && (
+              <SortButtons
+                  sort={sort}
+                  handleSortChange={handleSortChange}
+              />
+          )}
+          {/*the SalaryFilter */}
+          <SalaryFilter onFilter={handleSalaryFilter} />
+        </div>
         {/* Job table displaying the list of jobs if the list is empty show a message */}
         <JobTable
           jobs={jobs}
           handleDelete={openDeleteModal} // Pass the delete handler
         />
-        {jobs.length === 0 && (
-          <TableEmpty/>
-        )}
-
         {/* Pagination component (visible only in paginated mode) */}
         {!isFetchingAll && (
           <PaginationComponent

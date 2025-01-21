@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getJobs, getPaginatedJobs, deleteJob } from '../services/jobService';
-
+import { filterJobsBySalary } from '../services/jobService';
+  
 /**
  * Custom hook to manage job list state and operations.
  * Provides functionalities for fetching, paginating, sorting, and deleting jobs.
@@ -118,6 +119,17 @@ const useJobList = () => {
     }
   }, [isFetchingAll, loadPaginatedJobs]);
 
+  // New function to handle salary filter
+  const handleSalaryFilter = async ({ min, max }) => {
+    try {
+      const response = await filterJobsBySalary(min, max); // Fetch filtered jobs from backend
+      setJobs(response.data); // Update jobs state with filtered data
+    } catch (error) {
+      console.error('Failed to filter jobs by salary:', error);
+    }
+  };
+  
+
   // Return the state and handlers to be used in components
   return {
     jobs,
@@ -133,6 +145,7 @@ const useJobList = () => {
     handleDeleteConfirm,
     openDeleteModal,
     closeDeleteModal,
+    handleSalaryFilter,
   };
 };
 

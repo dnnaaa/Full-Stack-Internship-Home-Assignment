@@ -8,6 +8,8 @@ import {
   TableRow,
   Paper,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'; // Icon for delete action
 import EditIcon from '@mui/icons-material/Edit'; // Icon for edit action
@@ -15,6 +17,7 @@ import WorkIcon from '@mui/icons-material/Work'; // Icon for job title
 import PublicIcon from '@mui/icons-material/Public'; // Icon for job location
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'; // Icon for salary
 import { useNavigate } from 'react-router-dom'; // Navigation hook
+import TableEmpty from '../components/TableEmpty'; // Component for empty table state
 
 /**
  * Component for displaying a table of jobs.
@@ -25,75 +28,90 @@ import { useNavigate } from 'react-router-dom'; // Navigation hook
  */
 const JobTable = ({ jobs, handleDelete }) => {
   const navigate = useNavigate(); // Hook for navigation
+  const theme = useTheme(); // Material-UI theme
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm')); // Detect small screens
 
   return (
     <TableContainer
       component={Paper} // Material-UI paper for a card-like appearance
-      className="shadow-lg overflow-hidden" // Tailwind CSS for styling
-      sx={{ borderRadius: '25px' }} // Material-UI custom border radius
+      className="shadow-lg overflow-auto" // Enable scrolling on smaller screens
+      sx={{ borderRadius: '25px' }}
     >
       <Table className="bg-blue-900">
         {/* Table Header */}
         <TableHead>
           <TableRow>
             <TableCell className="text-gray-300 font-medium">Title</TableCell>
-            <TableCell className="text-gray-300 font-medium">Location</TableCell>
-            <TableCell className="text-gray-300 font-medium">Salary</TableCell>
+            {!isSmallScreen && (
+              <>
+                <TableCell className="text-gray-300 font-medium">
+                  Location
+                </TableCell>
+                <TableCell className="text-gray-300 font-medium">
+                  Salary
+                </TableCell>
+              </>
+            )}
             <TableCell className="text-gray-300 font-medium">Actions</TableCell>
           </TableRow>
         </TableHead>
 
         {/* Table Body */}
         <TableBody>
-          {jobs.map((job) => (
-            <TableRow
-              key={job.id} // Unique key for each row
-              className="hover:bg-blue-500 text-gray-300" // Tailwind for hover effect and text color
-            >
-              {/* Job Title Column */}
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <WorkIcon fontSize="small" /> {/* Icon for job title */}
-                  {job.title}
-                </div>
-              </TableCell>
+          {jobs.length === 0 ? (
+            <TableEmpty /> // Render empty table component
+          ) : (
+            jobs.map((job) => (
+              <TableRow
+                key={job.id} // Unique key for each row
+                className="hover:bg-blue-500 text-gray-300" // Hover effect
+              >
+                {/* Job Title Column */}
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    <WorkIcon fontSize="small" />
+                    {job.title}
+                  </div>
+                </TableCell>
 
-              {/* Job Location Column */}
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <PublicIcon fontSize="small" /> {/* Icon for job location */}
-                  {job.location}
-                </div>
-              </TableCell>
+                {/* Job Location Column (Hidden on Small Screens) */}
+                {!isSmallScreen && (
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <PublicIcon fontSize="small" />
+                      {job.location}
+                    </div>
+                  </TableCell>
+                )}
 
-              {/* Job Salary Column */}
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <AttachMoneyIcon fontSize="small" /> {/* Icon for salary */}
-                  {job.salary}
-                </div>
-              </TableCell>
+                {/* Job Salary Column (Hidden on Small Screens) */}
+                {!isSmallScreen && (
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      <AttachMoneyIcon fontSize="small" />
+                      {job.salary}
+                    </div>
+                  </TableCell>
+                )}
 
-              {/* Actions Column */}
-              <TableCell>
-                {/* Edit Button */}
-                <IconButton
-                  color="secondary"
-                  onClick={() => navigate(`/edit-job/${job.id}`)} // Navigate to the edit job page
-                >
-                  <EditIcon />
-                </IconButton>
-
-                {/* Delete Button */}
-                <IconButton
-                  color="error"
-                  onClick={() => handleDelete(job.id)} // Trigger delete handler
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
+                {/* Actions Column */}
+                <TableCell>
+                  <IconButton
+                    color="secondary"
+                    onClick={() => navigate(`/edit-job/${job.id}`)} // Navigate to edit page
+                  >
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton
+                    color="error"
+                    onClick={() => handleDelete(job.id)} // Handle delete action
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </TableContainer>

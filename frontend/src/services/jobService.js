@@ -69,6 +69,20 @@ export const updateJob = (id, job) => {
  * @param {number} id - The ID of the job to delete.
  * @returns {Promise} A promise that resolves when the job is deleted.
  */
+
 export const deleteJob = (id) => {
   return axios.delete(`${API_URL}/${id}`);
+};
+
+/**
+ * Filters jobs based on the provided salary range.
+ *
+ * @param {number} minSalary Minimum salary for filtering.
+ * @param {number} maxSalary Maximum salary for filtering.
+ * @return List of jobs within the specified salary range.
+ */
+export const filterJobsBySalary = async (minSalary, maxSalary) => {
+  return axios.get(`${API_URL}/filter-by-salary`, {
+    params: { minSalary, maxSalary },
+  });
 };

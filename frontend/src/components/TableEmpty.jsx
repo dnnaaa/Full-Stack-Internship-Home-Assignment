@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableCell, TableRow } from '@mui/material';
+import { TableCell, TableRow  } from '@mui/material';
 
 /**
  * TableEmpty Component
@@ -9,12 +9,12 @@ import { TableCell, TableRow } from '@mui/material';
  */
 const TableEmpty = () => {
   return (
-    <TableRow>
-      {/* Table cell spans all columns in the table */}
-      <TableCell colSpan={4} className="text-center text-gray-300">
-        No jobs available.
-      </TableCell>
-    </TableRow>
+      <TableRow>
+        {/* Table cell spans all columns in the table */}
+        <TableCell colSpan={4} className="text-center text-gray-300">
+          No jobs available.
+        </TableCell>
+        </TableRow>
   );
 };
 
