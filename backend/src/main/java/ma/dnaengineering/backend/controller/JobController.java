@@ -2,7 +2,6 @@ package ma.dnaengineering.backend.controller;
 
 import jakarta.validation.Valid;
 import ma.dnaengineering.backend.exception.JobNotFoundException;
-import ma.dnaengineering.backend.exception.NegativeSalaryException;
 import ma.dnaengineering.backend.model.Job;
 import ma.dnaengineering.backend.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class for managing job-related operations.
+ * Handles HTTP requests for creating, reading, updating, and deleting jobs.
+ */
 @RestController
 @RequestMapping("/api/jobs")
 @Validated
@@ -24,26 +27,51 @@ public class JobController {
     @Autowired
     JobService jobService;
 
-
-    // Create a new job
+    /**
+     * Create a new job.
+     * Validates the input job data and returns the created job with a status of 201 (Created).
+     *
+     * @param job the job data to be created
+     * @return the created job with HTTP status 201
+     */
     @PostMapping
     public ResponseEntity<Job> createJob(@Valid @RequestBody Job job) {
         Job createdJob = jobService.createJob(job);
         return new ResponseEntity<>(createdJob, HttpStatus.CREATED);
     }
-    // Fetch all jobs
+
+    /**
+     * Fetch all jobs.
+     * Returns a list of all jobs with a status of 200 (OK).
+     *
+     * @return a list of all jobs with HTTP status 200
+     */
     @GetMapping("/All")
     public ResponseEntity<List<Job>> getAllJobs() {
         List<Job> jobs = jobService.getAllJobs();
         return new ResponseEntity<>(jobs, HttpStatus.OK);
     }
-    //Fetch jobs by page
+
+    /**
+     * Fetch jobs with pagination.
+     * Returns a paginated list of jobs based on the provided `Pageable` parameter.
+     * The default page size is 5, and the default sort field is `title`.
+     *
+     * @param pageable pagination and sorting information
+     * @return a paginated list of jobs
+     */
     @GetMapping
     public Page<Job> getJobs(@PageableDefault(size = 5, sort = "title") Pageable pageable) {
         return jobService.getJobsByPage(pageable);
     }
 
-    // Fetch a job by ID
+    /**
+     * Fetch a specific job by its ID.
+     * Returns the job if found, or a status of 404 (Not Found) if the job does not exist.
+     *
+     * @param id the ID of the job to fetch
+     * @return the job with the specified ID or HTTP status 404
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Job> getJobById(@PathVariable Long id) {
         try {
@@ -54,8 +82,15 @@ public class JobController {
         }
     }
 
-
-    // Update a job by ID
+    /**
+     * Update a specific job by its ID.
+     * Validates the input job data and updates the job if it exists.
+     * Returns the updated job or a status of 404 (Not Found) if the job does not exist.
+     *
+     * @param id  the ID of the job to update
+     * @param job the updated job data
+     * @return the updated job or HTTP status 404
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Job> updateJob(@PathVariable Long id, @Valid @RequestBody Job job) {
         try {
@@ -66,7 +101,13 @@ public class JobController {
         }
     }
 
-    // Delete a job by ID
+    /**
+     * Delete a specific job by its ID.
+     * Deletes the job if it exists or returns a status of 404 (Not Found) if the job does not exist.
+     *
+     * @param id the ID of the job to delete
+     * @return HTTP status 204 (No Content) if the job is deleted or 404 if not found
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteJob(@PathVariable Long id) {
         try {
@@ -77,4 +118,3 @@ public class JobController {
         }
     }
 }
-

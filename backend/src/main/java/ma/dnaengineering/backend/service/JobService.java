@@ -15,7 +15,7 @@ public interface JobService {
     // Fetch all jobs
     List<Job> getAllJobs();
 
-    //
+    //Fech jobs by pages
     Page<Job> getJobsByPage(Pageable pageable);
 
     // Fetch a job by its ID
