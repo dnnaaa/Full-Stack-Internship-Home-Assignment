@@ -1,7 +1,15 @@
+"use client"; 
+import React from 'react';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
 export default function HomePage() {
-  return (
-    <div className='flex items-center justify-center h-screen bg-gray-50'>
-      <h1 className='text-4xl font-bold'>Welcome to My Next.js App!</h1>
-    </div>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/jobs');
+  }, [router]);
+
+  return null;
 }
