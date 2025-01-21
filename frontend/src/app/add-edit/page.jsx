@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { Button, InputAdornment, TextareaAutosize, TextField, Typography } from "@mui/material";
 import { createJob, getJobById, updateJob } from "@/app/services/api";
@@ -21,13 +21,16 @@ export default function AddEditJobPage() {
         salary: '',
     });
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const jobId = searchParams.get('id');
+    const [jobId, setJobId] = useState(null);
+    
     useEffect(() => {
-        if (jobId) {
-          const fetchJob = async () => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const id = searchParams.get('id');
+        if (id) {
+            setJobId(id);
+            const fetchJob = async () => {
             try {
-              const data = await getJobById(jobId);  
+              const data = await getJobById(id);  
               setJobData(data);  
             } catch (error) {
               console.error("Erreur lors de la récupération des données du job", error);
@@ -35,7 +38,7 @@ export default function AddEditJobPage() {
           };
           fetchJob();
         }
-    }, [jobId]);
+    }, []);
 
     const validateField = (name, value) => {
         switch (name) {
@@ -78,19 +81,17 @@ export default function AddEditJobPage() {
             let response;
             if(methode == 'POST'){
                 response = await createJob(jobData);
-                toast.success("Job created successfully!");
             }else if(methode == 'PUT'){
                 response = await updateJob(jobId, jobData);
-                toast.success("Job updated successfully!");
             }
 
             if(response){
-                router.push('/jobs', {
-                    state: {
-                        message: methode === 'POST' ? 'Job created successfully!' : 'Job updated successfully!',
-                        type: 'success',
-                    },
-                });
+                //Store the notification in localStorage
+                localStorage.setItem('jobNotification', JSON.stringify({
+                    message: methode === 'POST' ? 'Job created successfully!' : 'Job updated successfully!',
+                    type: 'success'
+                }));
+                router.push('/');
             }else{
                 toast.error("An error occurred during submission.");
             }
