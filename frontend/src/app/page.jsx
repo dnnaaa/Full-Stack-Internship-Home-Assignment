@@ -202,6 +202,9 @@ export default function JobList() {
                       onChange={handleSelectAll}
                     />
                   </TableCell>
+                  <TableCell onClick={() => handleSort("id")}>
+                    Id <SortIcon field="id" />
+                  </TableCell>
                   <TableCell onClick={() => handleSort("title")}>
                     Title <SortIcon field="title" />
                   </TableCell>
@@ -223,6 +226,7 @@ export default function JobList() {
                         onChange={() => handleSelectJob(job)}
                       />
                     </TableCell>
+                    <TableCell>{job.id}</TableCell>
                     <TableCell>{job.title}</TableCell>
                     <TableCell>{job.location}</TableCell>
                     <TableCell>{job.salary}</TableCell>
