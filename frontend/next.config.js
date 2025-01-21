@@ -5,7 +5,7 @@ module.exports = {
     config.resolve.alias['@'] = path.join(__dirname, './src');
     config.resolve.alias['@components'] = path.join(
       __dirname,
-      './src/components'
+      './src/app/components'
     );
     config.resolve.alias['@app'] = path.join(__dirname, './src/app');
     config.resolve.alias['@services'] = path.join(__dirname, './src/services');
