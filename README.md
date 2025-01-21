@@ -2,6 +2,8 @@
 
 This project is a full-stack web application for managing job postings, developed using React for the frontend and Spring Boot for the backend, with PostgreSQL as the database. The application provides functionalities to create, read, update, and delete job postings.
 
+### [Live Demo](https://job-management-system.onrender.com/)
+
 ---
 
 ## Table of Contents
