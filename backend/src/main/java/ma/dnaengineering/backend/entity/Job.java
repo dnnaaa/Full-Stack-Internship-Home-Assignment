@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Data
+@Table(name = "jobs")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

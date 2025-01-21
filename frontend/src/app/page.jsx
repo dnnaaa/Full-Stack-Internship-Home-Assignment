@@ -9,14 +9,18 @@ import JobTable from "./components/JobTable";
 
 export default function JobListPage() {
     const [jobs, setJobs] =useState([]);
+    const [loading, setLoading] = useState(true);
     const router = useRouter();
     useEffect(() => {
         const fetchJobs = async () => {
+          setLoading(true);
           try {
             const data = await getAllJobs();
             setJobs(data);
           } catch (error) {
             console.error("Error fetching jobs:", error);
+          } finally {
+            setLoading(false);
           }
         };
         
@@ -58,7 +62,7 @@ export default function JobListPage() {
                     New job +
                 </Button>
             </div>
-            <JobTable jobs={jobs} onEdit={handleEdit} onDelete={handleDelete} />
+            <JobTable jobs={jobs} loading={loading} onEdit={handleEdit} onDelete={handleDelete} />
         </div>
     )
 }
