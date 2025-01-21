@@ -10,14 +10,14 @@ This project is a full-stack web application for managing job postings, develope
 
 ## 📁 Table of Contents
 
-- [✨ Features](#features)
-- [💻 Technologies Used](#technologies-used)
-- [🔍 Project Structure](#project-structure)
-- [🛠️ Setup Instructions](#setup-instructions)
-- [🔐 Environment Variables](#environment-variables)
-- [📡 Endpoints](#endpoints)
-- [📸 Screenshots](#screenshots)
-- [📌 Notes](#notes)
+- [✨ Features](#-features)
+- [💻 Technologies Used](#-technologies-used)
+- [🔍 Project Structure](#-project-structure)
+- [🛠️ Setup Instructions](#️-setup-instructions)
+- [🔐 Environment Variables](#-environment-variables)
+- [📡 Endpoints](#-endpoints)
+- [📸 Screenshots](#-screenshots)
+- [📌 Notes](#-notes)
 
 ---
 
