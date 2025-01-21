@@ -32,7 +32,7 @@ const JobTable = ({ jobsSlice, onDelete, onPageChange }) => {
                 <TableRow key={job.id}>
                   <TableCell style={{ textAlign: 'center' }}>{job.title}</TableCell>
                   <TableCell style={{ textAlign: 'center' }}>{job.location ? job.location : "-"}</TableCell>
-                    <TableCell style={{textAlign: 'center'}}>{job.salary ? job.salary : "-"}</TableCell>
+                    <TableCell style={{textAlign: 'center'}}>$ {job.salary ? job.salary : "-"}</TableCell>
                     <TableCell style={{ textAlign: 'center' }}>
                     <Link href={`/edit-job/${job.id}`} passHref>
                       <Button variant="outlined" color="primary" style={{marginRight: '10px'}}>
