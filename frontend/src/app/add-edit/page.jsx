@@ -45,7 +45,8 @@ export default function AddEditJobPage() {
             case 'title':
                 return !value.trim() ? 'Title is required' : '';
             case 'description':
-                return !value.trim() ? 'Description is required' : '';
+                return !value.trim() ? 'Description is required' : 
+                value.length < 10 ? 'Description must be at least 10 characters long' : '';
             default:
                 return '';
         }
