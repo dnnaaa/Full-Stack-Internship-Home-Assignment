@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -100,6 +101,22 @@ public class JobController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    /**
+     * Filters jobs based on the provided salary range.
+     *
+     * @param minSalary Minimum salary for filtering.
+     * @param maxSalary Maximum salary for filtering.
+     * @return List of jobs within the specified salary range with HTTP status 200.
+     */
+    @GetMapping("/filter-by-salary")
+    public ResponseEntity<List<Job>> filterJobsBySalary(
+            @RequestParam BigDecimal minSalary,
+            @RequestParam BigDecimal maxSalary) {
+        List<Job> filteredJobs = jobService.filterJobsBySalary(minSalary, maxSalary);
+        return new ResponseEntity<>(filteredJobs, HttpStatus.OK);
+    }
+
 
     /**
      * Delete a specific job by its ID.

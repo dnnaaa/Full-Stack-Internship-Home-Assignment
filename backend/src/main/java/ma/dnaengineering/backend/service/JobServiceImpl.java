@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -106,6 +107,21 @@ public class JobServiceImpl implements JobService {
         existingJob.setSalary(updatedJob.getSalary());
         return existingJob;
     }
+
+    /**
+     * Fetch jobs by min max salary.
+     *
+     * minSalary the minimum salary of the jobs
+     * maxSalary the maximum salary of the jobs
+     */
+    @Override
+    public List<Job> filterJobsBySalary(BigDecimal minSalary, BigDecimal maxSalary) {
+        return jobRepository.findAll().stream()
+                .filter(job -> job.getSalary()
+                .compareTo(minSalary) >= 0 && job.getSalary().compareTo(maxSalary) <= 0)
+                .collect(Collectors.toList());
+    }
+
 
     /**
      * Delete a job by its ID.
