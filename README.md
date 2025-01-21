@@ -206,14 +206,21 @@ After successfully deleting a job, a green toast notification appears at the bot
 The application implements a fully responsive design to ensure an optimal user experience across various screen sizes. Below are some examples of the responsiveness:
 
 - Table:
+
   - On larger screens, the table displays all columns clearly.
   - On smaller screens, a horizontal scroll is activated to maintain usability without truncating data.
+
     ![Table](screenshots/table_responsive_1.png)
+
     ![Table](screenshots/table_responsive_2.png)
+
 - Form:
+
   - The form layout adapts dynamically based on the screen size.
   - On smaller screens, the form fields are stacked vertically, while on larger screens, the layout adjusts to a horizontal orientation for improved usability.
+
     ![Form](screenshots/form_responsive_1.png)
+
     ![Form](screenshots/form_responsive_2.png)
 
 ---
