@@ -1,15 +1,19 @@
 'use client';
 
-
 import { useEffect, useState } from "react";
 import { deleteJob, getAllJobs } from "../services/api";
 import { useRouter } from "next/navigation";
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function JobListPage() {
     const [jobs, setJobs] =useState([]);
     const router = useRouter();
+    const { state } = router;
     useEffect(() => {
+        if (state?.message) {
+          toast[state.type](state.message);
+        }
         const fetchJobs = async () => {
           try {
             const data = await getAllJobs();
@@ -18,9 +22,8 @@ export default function JobListPage() {
             console.error("Error fetching jobs:", error);
           }
         };
-    
         fetchJobs();
-      }, []);
+      }, [state]);
     const handleEdit = (id) => {
         router.push(`/jobs/add-edit?id=${id}`);
     };
@@ -29,6 +32,7 @@ export default function JobListPage() {
           const response = await deleteJob(id);
           if (response) {
             setJobs(jobs.filter((job) => job.id !== id));
+            toast.success("Job deleted successfully!");
           }
         } catch (error) {
           console.error("Error deleting job:", error);
@@ -36,6 +40,7 @@ export default function JobListPage() {
     };
     return (
         <div className="p-6">
+            <ToastContainer position="top-right" autoClose={3000} />
             <div className="flex justify-between items-center mb-4">
                 <Typography variant="h6" className="font-normal">
                     Job list
@@ -80,10 +85,6 @@ export default function JobListPage() {
                     </TableBody>
                 </Table>
             </TableContainer>
-
-
-
-
         </div>
     )
 }

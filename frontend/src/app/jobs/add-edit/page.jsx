@@ -85,7 +85,12 @@ export default function AddEditJobPage() {
             }
 
             if(response){
-                router.push('/jobs');
+                router.push('/jobs', {
+                    state: {
+                        message: methode === 'POST' ? 'Job created successfully!' : 'Job updated successfully!',
+                        type: 'success',
+                    },
+                });
             }else{
                 toast.error("An error occurred during submission.");
             }
