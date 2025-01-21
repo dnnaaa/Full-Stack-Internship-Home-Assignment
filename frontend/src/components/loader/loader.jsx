@@ -1,15 +1,21 @@
 import React from 'react';
-import "./loader.css";
+import "./loader.css"; // Import the CSS file for loader styling
 
-function loader() {
-
+/**
+ * Loader Component
+ * Displays a spinning animation with a "Loading..." message.
+ *
+ * @returns {JSX.Element} A loader element to indicate ongoing processes.
+ */
+function Loader() {
   return (
-        
-            <div className="spinner">
-              <span>Loading...</span>
-              <div className="half-spinner"></div>
-            </div>
+    <div className="spinner">
+      {/* Loading message */}
+      <span>Loading...</span>
+      {/* Spinning animation */}
+      <div className="half-spinner"></div>
+    </div>
   );
 }
 
-export default loader
+export default Loader;
