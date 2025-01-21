@@ -1,7 +1,18 @@
+'use client';
+
+import JobListPage from './jobs/JobPage';
+import { ToastProvider } from './context/ToastProvider';
+import Navbar from './context/Trofel';
+
 export default function HomePage() {
   return (
-    <div className='flex items-center justify-center h-screen bg-gray-50'>
-      <h1 className='text-4xl font-bold'>Welcome to My Next.js App!</h1>
-    </div>
+    <ToastProvider>
+      <div className='h-screen bg-gray-100'>
+        <Navbar />
+        <div className='flex justify-center'>
+          <JobListPage />
+        </div>
+      </div>
+    </ToastProvider>
   );
 }
