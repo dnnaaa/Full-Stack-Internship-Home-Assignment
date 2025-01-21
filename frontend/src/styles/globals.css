@@ -77,4 +77,7 @@
     text-decoration: none;
     @apply text-blue-600;
   }
+  button {
+    @apply rounded-lg shadow-md;
+  }
 }
